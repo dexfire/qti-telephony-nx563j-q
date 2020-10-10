@@ -342,27 +342,27 @@
     .local v5, "data":[B
     const/4 v6, 0x0
 
-    .local v6, "i":I
+    move v7, v6
+
+    .local v7, "i":I
     :goto_1
-    if-ge v6, v4, :cond_1
+    if-ge v7, v4, :cond_1
 
     .line 410
     invoke-virtual {p0}, Ljava/nio/ByteBuffer;->get()B
 
-    move-result v7
+    move-result v8
 
-    aput-byte v7, v5, v6
+    aput-byte v8, v5, v7
 
     .line 409
-    add-int/lit8 v6, v6, 0x1
+    add-int/lit8 v7, v7, 0x1
 
     goto :goto_1
 
     .line 412
-    .end local v6    # "i":I
+    .end local v7    # "i":I
     :cond_1
-    const/4 v6, 0x0
-
     aget-byte v6, v5, v6
 
     invoke-static {v6}, Lcom/qualcomm/qcrilhook/PrimitiveParser;->toUnsigned(B)S
@@ -394,7 +394,9 @@
     .line 428
     .end local v5    # "data":[B
     :goto_2
-    add-int/lit8 v5, v4, 0x3
+    const/4 v5, 0x3
+
+    add-int/2addr v5, v4
 
     sub-int/2addr p1, v5
 

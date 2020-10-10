@@ -174,61 +174,61 @@
 .end method
 
 .method public toString()Ljava/lang/String;
-    .locals 3
+    .locals 4
 
     .line 364
-    const/4 v0, 0x4
+    const-string v0, "[mIs_audio_supported_%s], [mAudio_capability_%s], [mIs_video_supported_%s], [mVideo_capability_%s]"
 
-    new-array v0, v0, [Ljava/lang/Object;
+    const/4 v1, 0x4
 
-    iget-object v1, p0, Lcom/qualcomm/qcrilhook/PresenceMsgBuilder$Publish$Imsp_presence_service_capabilities_struct;->mIs_audio_supported:Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiByte;
+    new-array v1, v1, [Ljava/lang/Object;
+
+    iget-object v2, p0, Lcom/qualcomm/qcrilhook/PresenceMsgBuilder$Publish$Imsp_presence_service_capabilities_struct;->mIs_audio_supported:Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiByte;
 
     .line 367
-    invoke-virtual {v1}, Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiByte;->toString()Ljava/lang/String;
+    invoke-virtual {v2}, Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiByte;->toString()Ljava/lang/String;
 
-    move-result-object v1
+    move-result-object v2
 
-    const/4 v2, 0x0
+    const/4 v3, 0x0
 
-    aput-object v1, v0, v2
+    aput-object v2, v1, v3
 
-    iget-object v1, p0, Lcom/qualcomm/qcrilhook/PresenceMsgBuilder$Publish$Imsp_presence_service_capabilities_struct;->mAudio_capability:Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiInteger;
+    iget-object v2, p0, Lcom/qualcomm/qcrilhook/PresenceMsgBuilder$Publish$Imsp_presence_service_capabilities_struct;->mAudio_capability:Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiInteger;
 
     .line 368
-    invoke-virtual {v1}, Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiInteger;->toString()Ljava/lang/String;
+    invoke-virtual {v2}, Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiInteger;->toString()Ljava/lang/String;
 
-    move-result-object v1
+    move-result-object v2
 
-    const/4 v2, 0x1
+    const/4 v3, 0x1
 
-    aput-object v1, v0, v2
+    aput-object v2, v1, v3
 
-    iget-object v1, p0, Lcom/qualcomm/qcrilhook/PresenceMsgBuilder$Publish$Imsp_presence_service_capabilities_struct;->mIs_video_supported:Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiByte;
+    iget-object v2, p0, Lcom/qualcomm/qcrilhook/PresenceMsgBuilder$Publish$Imsp_presence_service_capabilities_struct;->mIs_video_supported:Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiByte;
 
     .line 369
-    invoke-virtual {v1}, Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiByte;->toString()Ljava/lang/String;
+    invoke-virtual {v2}, Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiByte;->toString()Ljava/lang/String;
 
-    move-result-object v1
+    move-result-object v2
 
-    const/4 v2, 0x2
+    const/4 v3, 0x2
 
-    aput-object v1, v0, v2
+    aput-object v2, v1, v3
 
-    iget-object v1, p0, Lcom/qualcomm/qcrilhook/PresenceMsgBuilder$Publish$Imsp_presence_service_capabilities_struct;->mVideo_capability:Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiInteger;
+    iget-object v2, p0, Lcom/qualcomm/qcrilhook/PresenceMsgBuilder$Publish$Imsp_presence_service_capabilities_struct;->mVideo_capability:Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiInteger;
 
     .line 370
-    invoke-virtual {v1}, Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiInteger;->toString()Ljava/lang/String;
+    invoke-virtual {v2}, Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiInteger;->toString()Ljava/lang/String;
 
-    move-result-object v1
+    move-result-object v2
 
-    const/4 v2, 0x3
+    const/4 v3, 0x3
 
-    aput-object v1, v0, v2
+    aput-object v2, v1, v3
 
     .line 364
-    const-string v1, "[mIs_audio_supported_%s], [mAudio_capability_%s], [mIs_video_supported_%s], [mVideo_capability_%s]"
-
-    invoke-static {v1, v0}, Ljava/lang/String;->format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+    invoke-static {v0, v1}, Ljava/lang/String;->format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
 
     move-result-object v0
 
@@ -249,9 +249,11 @@
 
     move-result v0
 
-    add-int/lit8 v0, v0, 0x2
+    const/4 v1, 0x2
 
-    invoke-static {v0}, Lcom/qualcomm/qcrilhook/PresenceMsgBuilder$Publish$Imsp_presence_service_capabilities_struct;->createByteBuffer(I)Ljava/nio/ByteBuffer;
+    add-int/2addr v1, v0
+
+    invoke-static {v1}, Lcom/qualcomm/qcrilhook/PresenceMsgBuilder$Publish$Imsp_presence_service_capabilities_struct;->createByteBuffer(I)Ljava/nio/ByteBuffer;
 
     move-result-object v0
 

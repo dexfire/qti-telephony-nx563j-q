@@ -25,20 +25,20 @@
     .locals 7
     .param p1, "buf"    # Ljava/nio/ByteBuffer;
 
-    .line 220
+    .line 214
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 217
+    .line 211
     const/4 v0, 0x0
 
     iput-object v0, p0, Lcom/qualcomm/qcrilhook/TunerOemHook$ProvisionTable;->prv_tbl_oem:[I
 
-    .line 218
+    .line 212
     const/4 v0, -0x1
 
     iput v0, p0, Lcom/qualcomm/qcrilhook/TunerOemHook$ProvisionTable;->prv_tbl_rev:I
 
-    .line 221
+    .line 215
     invoke-static {}, Lcom/qualcomm/qcrilhook/TunerOemHook;->access$000()Ljava/lang/String;
 
     move-result-object v0
@@ -63,13 +63,13 @@
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 223
+    .line 217
     :goto_0
     invoke-virtual {p1}, Ljava/nio/ByteBuffer;->hasRemaining()Z
 
     move-result v0
 
-    if-eqz v0, :cond_4
+    if-eqz v0, :cond_2
 
     invoke-virtual {p1}, Ljava/nio/ByteBuffer;->remaining()I
 
@@ -77,9 +77,9 @@
 
     const/4 v1, 0x3
 
-    if-lt v0, v1, :cond_4
+    if-lt v0, v1, :cond_2
 
-    .line 224
+    .line 218
     invoke-virtual {p1}, Ljava/nio/ByteBuffer;->get()B
 
     move-result v0
@@ -88,7 +88,7 @@
 
     move-result v0
 
-    .line 225
+    .line 219
     .local v0, "type":I
     invoke-virtual {p1}, Ljava/nio/ByteBuffer;->getShort()S
 
@@ -98,17 +98,13 @@
 
     move-result v1
 
-    .line 227
+    .line 221
     .local v1, "length":I
-    const/16 v2, 0x10
+    const/4 v2, 0x0
 
-    if-eq v0, v2, :cond_2
+    packed-switch v0, :pswitch_data_0
 
-    const/16 v2, 0x11
-
-    if-eq v0, v2, :cond_0
-
-    .line 249
+    .line 243
     invoke-static {}, Lcom/qualcomm/qcrilhook/TunerOemHook;->access$000()Ljava/lang/String;
 
     move-result-object v2
@@ -117,47 +113,51 @@
 
     invoke-static {v2, v3}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
+    .end local v0    # "type":I
+    .end local v1    # "length":I
     goto :goto_3
 
-    .line 240
-    :cond_0
+    .line 234
+    .restart local v0    # "type":I
+    .restart local v1    # "length":I
+    :pswitch_0
     invoke-virtual {p1}, Ljava/nio/ByteBuffer;->get()B
 
-    move-result v2
+    move-result v3
 
-    .line 241
-    .local v2, "prv_tbl_oem_len":B
-    new-array v3, v2, [I
+    .line 235
+    .local v3, "prv_tbl_oem_len":B
+    new-array v4, v3, [I
 
-    iput-object v3, p0, Lcom/qualcomm/qcrilhook/TunerOemHook$ProvisionTable;->prv_tbl_oem:[I
+    iput-object v4, p0, Lcom/qualcomm/qcrilhook/TunerOemHook$ProvisionTable;->prv_tbl_oem:[I
 
-    .line 242
-    const/4 v3, 0x0
+    .line 236
+    nop
 
-    .local v3, "i":I
+    .local v2, "i":I
     :goto_1
-    if-ge v3, v2, :cond_1
+    if-ge v2, v3, :cond_0
 
-    .line 243
+    .line 237
     iget-object v4, p0, Lcom/qualcomm/qcrilhook/TunerOemHook$ProvisionTable;->prv_tbl_oem:[I
 
     invoke-virtual {p1}, Ljava/nio/ByteBuffer;->getShort()S
 
     move-result v5
 
-    aput v5, v4, v3
+    aput v5, v4, v2
 
-    .line 242
-    add-int/lit8 v3, v3, 0x1
+    .line 236
+    add-int/lit8 v2, v2, 0x1
 
     goto :goto_1
 
-    .line 245
-    .end local v3    # "i":I
-    :cond_1
+    .line 239
+    .end local v2    # "i":I
+    :cond_0
     invoke-static {}, Lcom/qualcomm/qcrilhook/TunerOemHook;->access$000()Ljava/lang/String;
 
-    move-result-object v3
+    move-result-object v2
 
     new-instance v4, Ljava/lang/StringBuilder;
 
@@ -169,7 +169,7 @@
 
     iget-object v5, p0, Lcom/qualcomm/qcrilhook/TunerOemHook$ProvisionTable;->prv_tbl_oem:[I
 
-    .line 246
+    .line 240
     invoke-static {v5}, Ljava/util/Arrays;->toString([I)Ljava/lang/String;
 
     move-result-object v5
@@ -180,58 +180,58 @@
 
     move-result-object v4
 
-    .line 245
-    invoke-static {v3, v4}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
+    .line 239
+    invoke-static {v2, v4}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 247
+    .line 241
     goto :goto_3
 
-    .line 229
-    .end local v2    # "prv_tbl_oem_len":B
-    :cond_2
-    new-array v2, v1, [B
+    .line 223
+    .end local v3    # "prv_tbl_oem_len":B
+    :pswitch_1
+    new-array v3, v1, [B
 
-    .line 230
-    .local v2, "data":[B
-    const/4 v3, 0x0
+    .line 224
+    .local v3, "data":[B
+    nop
 
-    .restart local v3    # "i":I
+    .restart local v2    # "i":I
     :goto_2
-    if-ge v3, v1, :cond_3
+    if-ge v2, v1, :cond_1
 
-    .line 231
+    .line 225
     invoke-virtual {p1}, Ljava/nio/ByteBuffer;->get()B
 
     move-result v4
 
-    aput-byte v4, v2, v3
+    aput-byte v4, v3, v2
 
-    .line 230
-    add-int/lit8 v3, v3, 0x1
+    .line 224
+    add-int/lit8 v2, v2, 0x1
 
     goto :goto_2
 
-    .line 233
-    .end local v3    # "i":I
-    :cond_3
-    invoke-static {v2}, Ljava/nio/ByteBuffer;->wrap([B)Ljava/nio/ByteBuffer;
+    .line 227
+    .end local v2    # "i":I
+    :cond_1
+    invoke-static {v3}, Ljava/nio/ByteBuffer;->wrap([B)Ljava/nio/ByteBuffer;
 
-    move-result-object v3
+    move-result-object v2
 
-    .line 234
-    .local v3, "wrapped":Ljava/nio/ByteBuffer;
+    .line 228
+    .local v2, "wrapped":Ljava/nio/ByteBuffer;
     sget-object v4, Ljava/nio/ByteOrder;->LITTLE_ENDIAN:Ljava/nio/ByteOrder;
 
-    invoke-virtual {v3, v4}, Ljava/nio/ByteBuffer;->order(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;
+    invoke-virtual {v2, v4}, Ljava/nio/ByteBuffer;->order(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;
 
-    .line 235
-    invoke-virtual {v3}, Ljava/nio/ByteBuffer;->getInt()I
+    .line 229
+    invoke-virtual {v2}, Ljava/nio/ByteBuffer;->getInt()I
 
     move-result v4
 
     iput v4, p0, Lcom/qualcomm/qcrilhook/TunerOemHook$ProvisionTable;->prv_tbl_rev:I
 
-    .line 236
+    .line 230
     invoke-static {}, Lcom/qualcomm/qcrilhook/TunerOemHook;->access$000()Ljava/lang/String;
 
     move-result-object v4
@@ -254,18 +254,24 @@
 
     invoke-static {v4, v5}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 237
+    .line 231
     nop
 
-    .line 252
+    .line 246
     .end local v0    # "type":I
     .end local v1    # "length":I
-    .end local v2    # "data":[B
-    .end local v3    # "wrapped":Ljava/nio/ByteBuffer;
+    .end local v2    # "wrapped":Ljava/nio/ByteBuffer;
+    .end local v3    # "data":[B
     :goto_3
     goto/16 :goto_0
 
-    .line 253
-    :cond_4
+    .line 247
+    :cond_2
     return-void
+
+    :pswitch_data_0
+    .packed-switch 0x10
+        :pswitch_1
+        :pswitch_0
+    .end packed-switch
 .end method

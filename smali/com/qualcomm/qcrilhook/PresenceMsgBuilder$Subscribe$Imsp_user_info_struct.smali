@@ -127,39 +127,39 @@
 .end method
 
 .method public toString()Ljava/lang/String;
-    .locals 3
+    .locals 4
 
     .line 166
-    const/4 v0, 0x2
+    const-string v0, "[subscribe_user_list_len_%s], [imsp_user_uri=%s]"
 
-    new-array v0, v0, [Ljava/lang/Object;
+    const/4 v1, 0x2
 
-    iget-object v1, p0, Lcom/qualcomm/qcrilhook/PresenceMsgBuilder$Subscribe$Imsp_user_info_struct;->subscribe_user_list_len:Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiByte;
+    new-array v1, v1, [Ljava/lang/Object;
+
+    iget-object v2, p0, Lcom/qualcomm/qcrilhook/PresenceMsgBuilder$Subscribe$Imsp_user_info_struct;->subscribe_user_list_len:Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiByte;
 
     .line 168
-    invoke-virtual {v1}, Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiByte;->toString()Ljava/lang/String;
+    invoke-virtual {v2}, Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiByte;->toString()Ljava/lang/String;
 
-    move-result-object v1
+    move-result-object v2
 
-    const/4 v2, 0x0
+    const/4 v3, 0x0
 
-    aput-object v1, v0, v2
+    aput-object v2, v1, v3
 
-    iget-object v1, p0, Lcom/qualcomm/qcrilhook/PresenceMsgBuilder$Subscribe$Imsp_user_info_struct;->imsp_user_uri:Lcom/qualcomm/qcrilhook/PresenceMsgBuilder$Subscribe$Imsp_user_uri_struct;
+    iget-object v2, p0, Lcom/qualcomm/qcrilhook/PresenceMsgBuilder$Subscribe$Imsp_user_info_struct;->imsp_user_uri:Lcom/qualcomm/qcrilhook/PresenceMsgBuilder$Subscribe$Imsp_user_uri_struct;
 
     .line 169
-    invoke-virtual {v1}, Lcom/qualcomm/qcrilhook/PresenceMsgBuilder$Subscribe$Imsp_user_uri_struct;->toString()Ljava/lang/String;
+    invoke-virtual {v2}, Lcom/qualcomm/qcrilhook/PresenceMsgBuilder$Subscribe$Imsp_user_uri_struct;->toString()Ljava/lang/String;
 
-    move-result-object v1
+    move-result-object v2
 
-    const/4 v2, 0x1
+    const/4 v3, 0x1
 
-    aput-object v1, v0, v2
+    aput-object v2, v1, v3
 
     .line 166
-    const-string v1, "[subscribe_user_list_len_%s], [imsp_user_uri=%s]"
-
-    invoke-static {v1, v0}, Ljava/lang/String;->format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+    invoke-static {v0, v1}, Ljava/lang/String;->format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
 
     move-result-object v0
 
@@ -183,10 +183,12 @@
 
     move-result v0
 
-    add-int/lit8 v0, v0, 0x3
+    const/4 v1, 0x3
+
+    add-int/2addr v1, v0
 
     .line 150
-    invoke-static {v0}, Lcom/qualcomm/qcrilhook/PresenceMsgBuilder$Subscribe$Imsp_user_info_struct;->createByteBuffer(I)Ljava/nio/ByteBuffer;
+    invoke-static {v1}, Lcom/qualcomm/qcrilhook/PresenceMsgBuilder$Subscribe$Imsp_user_info_struct;->createByteBuffer(I)Ljava/nio/ByteBuffer;
 
     move-result-object v0
 

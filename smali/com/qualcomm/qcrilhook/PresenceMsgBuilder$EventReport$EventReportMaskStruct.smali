@@ -81,22 +81,22 @@
 .end method
 
 .method public toString()Ljava/lang/String;
-    .locals 3
+    .locals 4
 
     .line 620
-    const/4 v0, 0x1
+    const-string v0, "[mMask_%s]"
 
-    new-array v0, v0, [Ljava/lang/Object;
+    const/4 v1, 0x1
 
-    iget-object v1, p0, Lcom/qualcomm/qcrilhook/PresenceMsgBuilder$EventReport$EventReportMaskStruct;->mMask:Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiByte;
+    new-array v1, v1, [Ljava/lang/Object;
 
-    const/4 v2, 0x0
+    iget-object v2, p0, Lcom/qualcomm/qcrilhook/PresenceMsgBuilder$EventReport$EventReportMaskStruct;->mMask:Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiByte;
 
-    aput-object v1, v0, v2
+    const/4 v3, 0x0
 
-    const-string v1, "[mMask_%s]"
+    aput-object v2, v1, v3
 
-    invoke-static {v1, v0}, Ljava/lang/String;->format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+    invoke-static {v0, v1}, Ljava/lang/String;->format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
 
     move-result-object v0
 
@@ -120,10 +120,12 @@
 
     move-result v0
 
-    add-int/lit8 v0, v0, 0x3
+    const/4 v1, 0x3
+
+    add-int/2addr v1, v0
 
     .line 603
-    invoke-static {v0}, Lcom/qualcomm/qcrilhook/PresenceMsgBuilder$EventReport$EventReportMaskStruct;->createByteBuffer(I)Ljava/nio/ByteBuffer;
+    invoke-static {v1}, Lcom/qualcomm/qcrilhook/PresenceMsgBuilder$EventReport$EventReportMaskStruct;->createByteBuffer(I)Ljava/nio/ByteBuffer;
 
     move-result-object v0
 

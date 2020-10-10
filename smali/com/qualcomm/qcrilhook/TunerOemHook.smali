@@ -128,6 +128,8 @@
 
     .line 81
     :cond_0
+    sget-object v0, Lcom/qualcomm/qcrilhook/TunerOemHook;->mInstance:Lcom/qualcomm/qcrilhook/TunerOemHook;
+
     iput-object p0, v0, Lcom/qualcomm/qcrilhook/TunerOemHook;->mContext:Landroid/content/Context;
 
     .line 83
@@ -156,12 +158,12 @@
         }
     .end annotation
 
-    .line 260
+    .line 254
     array-length v0, p1
 
     new-array v0, v0, [Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiInteger;
 
-    .line 261
+    .line 255
     .local v0, "qmiIntArray":[Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiInteger;
     const/4 v1, 0x0
 
@@ -171,7 +173,7 @@
 
     if-ge v1, v2, :cond_0
 
-    .line 262
+    .line 256
     new-instance v2, Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiInteger;
 
     aget v3, p1, v1
@@ -182,12 +184,12 @@
 
     aput-object v2, v0, v1
 
-    .line 261
+    .line 255
     add-int/lit8 v1, v1, 0x1
 
     goto :goto_0
 
-    .line 264
+    .line 258
     .end local v1    # "i":I
     :cond_0
     new-instance v1, Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiArray;
@@ -204,7 +206,7 @@
 .end method
 
 .method public static receive(Ljava/util/HashMap;)Ljava/lang/Object;
-    .locals 11
+    .locals 9
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -216,28 +218,8 @@
         }
     .end annotation
 
-    .line 156
+    .line 155
     .local p0, "map":Ljava/util/HashMap;, "Ljava/util/HashMap<Ljava/lang/Integer;Ljava/lang/Object;>;"
-    if-nez p0, :cond_0
-
-    .line 157
-    sget-object v0, Lcom/qualcomm/qcrilhook/TunerOemHook;->LOG_TAG:Ljava/lang/String;
-
-    const-string v1, "received null result"
-
-    invoke-static {v0, v1}, Landroid/util/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 158
-    new-instance v0, Ljava/lang/Integer;
-
-    const/4 v1, -0x1
-
-    invoke-direct {v0, v1}, Ljava/lang/Integer;-><init>(I)V
-
-    return-object v0
-
-    .line 161
-    :cond_0
     const/4 v0, 0x1
 
     invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
@@ -254,7 +236,7 @@
 
     move-result v0
 
-    .line 162
+    .line 156
     .local v0, "requestId":I
     const/4 v1, 0x2
 
@@ -272,7 +254,7 @@
 
     move-result v1
 
-    .line 163
+    .line 157
     .local v1, "responseSize":I
     const/4 v2, 0x3
 
@@ -290,7 +272,7 @@
 
     move-result v2
 
-    .line 164
+    .line 158
     .local v2, "successStatus":I
     const/16 v3, 0x8
 
@@ -308,11 +290,31 @@
 
     move-result v3
 
-    .line 166
+    .line 160
     .local v3, "messageId":S
+    nop
+
+    .line 161
     const/4 v4, 0x5
 
-    .line 167
+    invoke-static {v4}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v4
+
+    invoke-virtual {p0, v4}, Ljava/util/HashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
+
+    .line 163
+    const/4 v4, 0x4
+
+    invoke-static {v4}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v4
+
+    invoke-virtual {p0, v4}, Ljava/util/HashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
+
+    .line 164
+    const/4 v4, 0x6
+
     invoke-static {v4}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
     move-result-object v4
@@ -321,191 +323,165 @@
 
     move-result-object v4
 
-    check-cast v4, Lcom/qualcomm/qcrilhook/QmiOemHookConstants$ResponseType;
+    check-cast v4, Ljava/nio/ByteBuffer;
 
-    .line 169
-    .local v4, "respType":Lcom/qualcomm/qcrilhook/QmiOemHookConstants$ResponseType;
-    const/4 v5, 0x4
+    .line 166
+    .local v4, "respByteBuf":Ljava/nio/ByteBuffer;
+    sget-object v5, Lcom/qualcomm/qcrilhook/TunerOemHook;->LOG_TAG:Ljava/lang/String;
 
-    invoke-static {v5}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+    new-instance v6, Ljava/lang/StringBuilder;
 
-    move-result-object v5
+    invoke-direct {v6}, Ljava/lang/StringBuilder;-><init>()V
 
-    invoke-virtual {p0, v5}, Ljava/util/HashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
+    const-string v7, "receive respByteBuf = "
 
-    move-result-object v5
+    invoke-virtual {v6, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    check-cast v5, Landroid/os/Message;
+    invoke-virtual {v6, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v6}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v6
+
+    invoke-static {v5, v6}, Landroid/util/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 167
+    sget-object v5, Lcom/qualcomm/qcrilhook/TunerOemHook;->LOG_TAG:Ljava/lang/String;
+
+    new-instance v6, Ljava/lang/StringBuilder;
+
+    invoke-direct {v6}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v7, " responseSize="
+
+    invoke-virtual {v6, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v6, v1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    const-string v7, " successStatus="
+
+    invoke-virtual {v6, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v6, v2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    const-string v7, " messageId= "
+
+    invoke-virtual {v6, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v6, v3}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v6}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v6
+
+    invoke-static {v5, v6}, Landroid/util/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 170
-    .local v5, "msg":Landroid/os/Message;
-    const/4 v6, 0x6
-
-    invoke-static {v6}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
-
-    move-result-object v6
-
-    invoke-virtual {p0, v6}, Ljava/util/HashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
-
-    move-result-object v6
-
-    check-cast v6, Ljava/nio/ByteBuffer;
-
-    .line 172
-    .local v6, "respByteBuf":Ljava/nio/ByteBuffer;
-    sget-object v7, Lcom/qualcomm/qcrilhook/TunerOemHook;->LOG_TAG:Ljava/lang/String;
-
-    new-instance v8, Ljava/lang/StringBuilder;
-
-    invoke-direct {v8}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v9, "receive respByteBuf = "
-
-    invoke-virtual {v8, v9}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v8, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v8}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v8
-
-    invoke-static {v7, v8}, Landroid/util/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 173
-    sget-object v7, Lcom/qualcomm/qcrilhook/TunerOemHook;->LOG_TAG:Ljava/lang/String;
-
-    new-instance v8, Ljava/lang/StringBuilder;
-
-    invoke-direct {v8}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v9, " responseSize="
-
-    invoke-virtual {v8, v9}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v8, v1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    const-string v9, " successStatus="
-
-    invoke-virtual {v8, v9}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v8, v2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    const-string v9, " messageId= "
-
-    invoke-virtual {v8, v9}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v8, v3}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v8}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v8
-
-    invoke-static {v7, v8}, Landroid/util/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 176
     invoke-static {v2}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
-    move-result-object v7
+    move-result-object v5
 
-    .line 178
-    .local v7, "returnObject":Ljava/lang/Object;
+    .line 172
+    .local v5, "returnObject":Ljava/lang/Object;
     packed-switch v3, :pswitch_data_0
 
-    .line 204
-    sget-object v8, Lcom/qualcomm/qcrilhook/TunerOemHook;->LOG_TAG:Ljava/lang/String;
+    .line 198
+    sget-object v6, Lcom/qualcomm/qcrilhook/TunerOemHook;->LOG_TAG:Ljava/lang/String;
 
-    const-string v9, "Invalid request"
+    const-string v7, "Invalid request"
 
-    invoke-static {v8, v9}, Landroid/util/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
+    invoke-static {v6, v7}, Landroid/util/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
     goto :goto_0
 
-    .line 196
+    .line 190
     :pswitch_0
-    sget-object v8, Lcom/qualcomm/qcrilhook/TunerOemHook;->LOG_TAG:Ljava/lang/String;
+    sget-object v6, Lcom/qualcomm/qcrilhook/TunerOemHook;->LOG_TAG:Ljava/lang/String;
 
-    new-instance v9, Ljava/lang/StringBuilder;
+    new-instance v7, Ljava/lang/StringBuilder;
 
-    invoke-direct {v9}, Ljava/lang/StringBuilder;-><init>()V
+    invoke-direct {v7}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string v10, "Response: QCRILHOOK_TUNER_RFRPE_GET_PROVISIONED_TABLE_REVISION_REQ="
+    const-string v8, "Response: QCRILHOOK_TUNER_RFRPE_GET_PROVISIONED_TABLE_REVISION_REQ="
 
-    invoke-virtual {v9, v10}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    invoke-virtual {v9, v2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    invoke-virtual {v7, v2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
 
-    invoke-virtual {v9}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v9
-
-    invoke-static {v8, v9}, Landroid/util/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 199
-    new-instance v8, Lcom/qualcomm/qcrilhook/TunerOemHook$ProvisionTable;
-
-    invoke-direct {v8, v6}, Lcom/qualcomm/qcrilhook/TunerOemHook$ProvisionTable;-><init>(Ljava/nio/ByteBuffer;)V
-
-    .line 200
-    .local v8, "info":Lcom/qualcomm/qcrilhook/TunerOemHook$ProvisionTable;
-    iget v9, v8, Lcom/qualcomm/qcrilhook/TunerOemHook$ProvisionTable;->prv_tbl_rev:I
-
-    invoke-static {v9}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+    invoke-virtual {v7}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v7
 
-    .line 201
+    invoke-static {v6, v7}, Landroid/util/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 193
+    new-instance v6, Lcom/qualcomm/qcrilhook/TunerOemHook$ProvisionTable;
+
+    invoke-direct {v6, v4}, Lcom/qualcomm/qcrilhook/TunerOemHook$ProvisionTable;-><init>(Ljava/nio/ByteBuffer;)V
+
+    .line 194
+    .local v6, "info":Lcom/qualcomm/qcrilhook/TunerOemHook$ProvisionTable;
+    iget v7, v6, Lcom/qualcomm/qcrilhook/TunerOemHook$ProvisionTable;->prv_tbl_rev:I
+
+    invoke-static {v7}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v5
+
+    .line 195
     goto :goto_0
 
-    .line 188
-    .end local v8    # "info":Lcom/qualcomm/qcrilhook/TunerOemHook$ProvisionTable;
+    .line 182
+    .end local v6    # "info":Lcom/qualcomm/qcrilhook/TunerOemHook$ProvisionTable;
     :pswitch_1
-    sget-object v8, Lcom/qualcomm/qcrilhook/TunerOemHook;->LOG_TAG:Ljava/lang/String;
+    sget-object v6, Lcom/qualcomm/qcrilhook/TunerOemHook;->LOG_TAG:Ljava/lang/String;
 
-    new-instance v9, Ljava/lang/StringBuilder;
+    new-instance v7, Ljava/lang/StringBuilder;
 
-    invoke-direct {v9}, Ljava/lang/StringBuilder;-><init>()V
+    invoke-direct {v7}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string v10, "Response: QCRILHOOK_TUNER_RFRPE_GET_RFM_SCENARIO_REQ="
+    const-string v8, "Response: QCRILHOOK_TUNER_RFRPE_GET_RFM_SCENARIO_REQ="
 
-    invoke-virtual {v9, v10}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    invoke-virtual {v9, v2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    invoke-virtual {v7, v2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
 
-    invoke-virtual {v9}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    invoke-virtual {v7}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
-    move-result-object v9
+    move-result-object v7
 
-    invoke-static {v8, v9}, Landroid/util/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
+    invoke-static {v6, v7}, Landroid/util/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 192
+    .line 186
     goto :goto_0
 
-    .line 181
+    .line 175
     :pswitch_2
-    sget-object v8, Lcom/qualcomm/qcrilhook/TunerOemHook;->LOG_TAG:Ljava/lang/String;
+    sget-object v6, Lcom/qualcomm/qcrilhook/TunerOemHook;->LOG_TAG:Ljava/lang/String;
 
-    new-instance v9, Ljava/lang/StringBuilder;
+    new-instance v7, Ljava/lang/StringBuilder;
 
-    invoke-direct {v9}, Ljava/lang/StringBuilder;-><init>()V
+    invoke-direct {v7}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string v10, "Response: QCRILHOOK_TUNER_RFRPE_SET_RFM_SCENARIO_REQ="
+    const-string v8, "Response: QCRILHOOK_TUNER_RFRPE_SET_RFM_SCENARIO_REQ="
 
-    invoke-virtual {v9, v10}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    invoke-virtual {v9, v2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    invoke-virtual {v7, v2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
 
-    invoke-virtual {v9}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    invoke-virtual {v7}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
-    move-result-object v9
+    move-result-object v7
 
-    invoke-static {v8, v9}, Landroid/util/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
+    invoke-static {v6, v7}, Landroid/util/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 184
+    .line 178
     nop
 
-    .line 209
+    .line 203
     :goto_0
-    return-object v7
+    return-object v5
+
+    nop
 
     :pswitch_data_0
     .packed-switch 0x20
@@ -558,7 +534,6 @@
     goto :goto_0
 
     .line 103
-    .end local p0    # "this":Lcom/qualcomm/qcrilhook/TunerOemHook;
     :cond_0
     sget-object v0, Lcom/qualcomm/qcrilhook/TunerOemHook;->LOG_TAG:Ljava/lang/String;
 
@@ -594,6 +569,7 @@
 
     monitor-exit p0
 
+    .end local p0    # "this":Lcom/qualcomm/qcrilhook/TunerOemHook;
     throw v0
 .end method
 
@@ -619,7 +595,6 @@
     return-void
 
     .line 87
-    .end local p0    # "this":Lcom/qualcomm/qcrilhook/TunerOemHook;
     .end local p1    # "h":Landroid/os/Handler;
     .end local p2    # "what":I
     .end local p3    # "obj":Ljava/lang/Object;
@@ -628,6 +603,7 @@
 
     monitor-exit p0
 
+    .end local p0    # "this":Lcom/qualcomm/qcrilhook/TunerOemHook;
     throw p1
 .end method
 
@@ -755,12 +731,12 @@
     return-void
 
     .line 91
-    .end local p0    # "this":Lcom/qualcomm/qcrilhook/TunerOemHook;
     .end local p1    # "h":Landroid/os/Handler;
     :catchall_0
     move-exception p1
 
     monitor-exit p0
 
+    .end local p0    # "this":Lcom/qualcomm/qcrilhook/TunerOemHook;
     throw p1
 .end method

@@ -330,11 +330,13 @@
     if-eqz v2, :cond_0
 
     .line 245
-    iget-short v3, p0, Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiArray;->mArrayLength:S
+    iget-short v2, p0, Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiArray;->mArrayLength:S
 
-    div-int/2addr v3, v2
+    iget-short v3, p0, Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiArray;->mNumOfElements:S
 
-    int-to-short v1, v3
+    div-int/2addr v2, v3
+
+    int-to-short v1, v2
 
     goto :goto_0
 

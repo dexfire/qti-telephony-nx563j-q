@@ -34,19 +34,19 @@
     .param p1, "this$0"    # Lcom/qualcomm/qcrilhook/TunerOemHook;
     .param p2, "list"    # [I
 
-    .line 273
+    .line 267
     iput-object p1, p0, Lcom/qualcomm/qcrilhook/TunerOemHook$ScenarioRequest;->this$0:Lcom/qualcomm/qcrilhook/TunerOemHook;
 
     invoke-direct {p0}, Lcom/qualcomm/qcrilhook/BaseQmiTypes$BaseQmiStructType;-><init>()V
 
-    .line 274
+    .line 268
     invoke-static {p1, p2}, Lcom/qualcomm/qcrilhook/TunerOemHook;->access$100(Lcom/qualcomm/qcrilhook/TunerOemHook;[I)Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiArray;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/qualcomm/qcrilhook/TunerOemHook$ScenarioRequest;->list:Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiArray;
 
-    .line 275
+    .line 269
     return-void
 .end method
 
@@ -55,7 +55,7 @@
 .method public getItems()[Lcom/qualcomm/qcrilhook/BaseQmiTypes$BaseQmiItemType;
     .locals 3
 
-    .line 279
+    .line 273
     const/4 v0, 0x1
 
     new-array v0, v0, [Lcom/qualcomm/qcrilhook/BaseQmiTypes$BaseQmiItemType;
@@ -72,7 +72,7 @@
 .method public getTypes()[S
     .locals 3
 
-    .line 284
+    .line 278
     const/4 v0, 0x1
 
     new-array v1, v0, [S

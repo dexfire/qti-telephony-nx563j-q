@@ -178,50 +178,50 @@
 .end method
 
 .method public toString()Ljava/lang/String;
-    .locals 3
+    .locals 4
 
     .line 304
-    const/4 v0, 0x3
+    const-string v0, "[mDescription_%s],[mVer_%s], [mService_id_%s]"
 
-    new-array v0, v0, [Ljava/lang/Object;
+    const/4 v1, 0x3
 
-    iget-object v1, p0, Lcom/qualcomm/qcrilhook/PresenceMsgBuilder$Publish$Imsp_presence_service_description_struct;->mDescription:Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiString;
+    new-array v1, v1, [Ljava/lang/Object;
+
+    iget-object v2, p0, Lcom/qualcomm/qcrilhook/PresenceMsgBuilder$Publish$Imsp_presence_service_description_struct;->mDescription:Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiString;
 
     .line 306
-    invoke-virtual {v1}, Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiString;->toString()Ljava/lang/String;
+    invoke-virtual {v2}, Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiString;->toString()Ljava/lang/String;
 
-    move-result-object v1
+    move-result-object v2
 
-    const/4 v2, 0x0
+    const/4 v3, 0x0
 
-    aput-object v1, v0, v2
+    aput-object v2, v1, v3
 
-    iget-object v1, p0, Lcom/qualcomm/qcrilhook/PresenceMsgBuilder$Publish$Imsp_presence_service_description_struct;->mVer:Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiString;
+    iget-object v2, p0, Lcom/qualcomm/qcrilhook/PresenceMsgBuilder$Publish$Imsp_presence_service_description_struct;->mVer:Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiString;
 
     .line 307
-    invoke-virtual {v1}, Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiString;->toString()Ljava/lang/String;
+    invoke-virtual {v2}, Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiString;->toString()Ljava/lang/String;
 
-    move-result-object v1
+    move-result-object v2
 
-    const/4 v2, 0x1
+    const/4 v3, 0x1
 
-    aput-object v1, v0, v2
+    aput-object v2, v1, v3
 
-    iget-object v1, p0, Lcom/qualcomm/qcrilhook/PresenceMsgBuilder$Publish$Imsp_presence_service_description_struct;->mService_id:Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiString;
+    iget-object v2, p0, Lcom/qualcomm/qcrilhook/PresenceMsgBuilder$Publish$Imsp_presence_service_description_struct;->mService_id:Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiString;
 
     .line 308
-    invoke-virtual {v1}, Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiString;->toString()Ljava/lang/String;
+    invoke-virtual {v2}, Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiString;->toString()Ljava/lang/String;
 
-    move-result-object v1
+    move-result-object v2
 
-    const/4 v2, 0x2
+    const/4 v3, 0x2
 
-    aput-object v1, v0, v2
+    aput-object v2, v1, v3
 
     .line 305
-    const-string v1, "[mDescription_%s],[mVer_%s], [mService_id_%s]"
-
-    invoke-static {v1, v0}, Ljava/lang/String;->format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+    invoke-static {v0, v1}, Ljava/lang/String;->format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
 
     move-result-object v0
 
@@ -243,9 +243,11 @@
 
     move-result v0
 
-    add-int/lit8 v0, v0, 0x2
+    const/4 v1, 0x2
 
-    invoke-static {v0}, Lcom/qualcomm/qcrilhook/PresenceMsgBuilder$Publish$Imsp_presence_service_description_struct;->createByteBuffer(I)Ljava/nio/ByteBuffer;
+    add-int/2addr v1, v0
+
+    invoke-static {v1}, Lcom/qualcomm/qcrilhook/PresenceMsgBuilder$Publish$Imsp_presence_service_description_struct;->createByteBuffer(I)Ljava/nio/ByteBuffer;
 
     move-result-object v0
 

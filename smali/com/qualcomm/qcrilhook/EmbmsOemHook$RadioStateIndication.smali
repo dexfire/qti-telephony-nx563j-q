@@ -47,7 +47,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_2
+    if-eqz v0, :cond_0
 
     .line 1213
     :try_start_0
@@ -71,39 +71,17 @@
 
     .line 1216
     .local v1, "length":I
-    const/4 v2, 0x1
-
-    if-eq v0, v2, :cond_1
-
-    const/4 v2, 0x2
-
-    if-eq v0, v2, :cond_0
+    packed-switch v0, :pswitch_data_0
 
     .line 1226
     invoke-static {}, Lcom/qualcomm/qcrilhook/EmbmsOemHook;->access$000()Ljava/lang/String;
 
     move-result-object v2
 
-    new-instance v3, Ljava/lang/StringBuilder;
-
-    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v4, "RadioStateIndication: Unexpected Type "
-
-    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v3, v0}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v3
-
-    invoke-static {v2, v3}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
-
     goto :goto_1
 
     .line 1218
-    :cond_0
+    :pswitch_0
     invoke-virtual {p2}, Ljava/nio/ByteBuffer;->getInt()I
 
     move-result v2
@@ -134,10 +112,10 @@
     invoke-static {v2, v3}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 1220
-    goto :goto_1
+    goto :goto_2
 
     .line 1222
-    :cond_1
+    :pswitch_1
     invoke-virtual {p2}, Ljava/nio/ByteBuffer;->getInt()I
 
     move-result v2
@@ -166,15 +144,35 @@
     move-result-object v3
 
     invoke-static {v2, v3}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 1224
+    goto :goto_2
+
+    .line 1226
+    :goto_1
+    new-instance v3, Ljava/lang/StringBuilder;
+
+    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v4, "RadioStateIndication: Unexpected Type "
+
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v3, v0}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v3
+
+    invoke-static {v2, v3}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
     :try_end_0
     .catch Ljava/nio/BufferUnderflowException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 1224
-    goto :goto_1
-
-    .line 1229
     .end local v0    # "type":I
     .end local v1    # "length":I
+    goto :goto_2
+
+    .line 1229
     :catch_0
     move-exception v0
 
@@ -190,10 +188,18 @@
 
     .line 1231
     .end local v0    # "e":Ljava/nio/BufferUnderflowException;
-    :goto_1
-    goto/16 :goto_0
+    :goto_2
+    goto :goto_0
 
     .line 1233
-    :cond_2
+    :cond_0
     return-void
+
+    nop
+
+    :pswitch_data_0
+    .packed-switch 0x1
+        :pswitch_1
+        :pswitch_0
+    .end packed-switch
 .end method

@@ -220,7 +220,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_4
+    if-eqz v0, :cond_1
 
     .line 2190
     :try_start_0
@@ -244,19 +244,11 @@
 
     .line 2193
     .local v1, "length":I
+    packed-switch v0, :pswitch_data_0
+
     const/4 v2, 0x1
 
-    if-eq v0, v2, :cond_3
-
-    const/4 v3, 0x2
-
-    if-eq v0, v3, :cond_2
-
-    const/4 v3, 0x3
-
-    if-eq v0, v3, :cond_1
-
-    packed-switch v0, :pswitch_data_0
+    packed-switch v0, :pswitch_data_1
 
     .line 2225
     invoke-static {}, Lcom/qualcomm/qcrilhook/EmbmsOemHook;->access$000()Ljava/lang/String;
@@ -279,9 +271,13 @@
 
     invoke-static {v2, v3}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
+    .end local v0    # "type":I
+    .end local v1    # "length":I
     goto/16 :goto_1
 
     .line 2212
+    .restart local v0    # "type":I
+    .restart local v1    # "length":I
     :pswitch_0
     iput-boolean v2, p0, Lcom/qualcomm/qcrilhook/EmbmsOemHook$TimeResponse;->additionalInfo:Z
 
@@ -402,7 +398,7 @@
 
     .line 2195
     .end local v3    # "isdayLightSaving":B
-    :cond_1
+    :pswitch_3
     invoke-virtual {p3}, Ljava/nio/ByteBuffer;->getLong()J
 
     move-result-wide v2
@@ -436,7 +432,7 @@
     goto :goto_1
 
     .line 2221
-    :cond_2
+    :pswitch_4
     invoke-virtual {p3}, Ljava/nio/ByteBuffer;->getInt()I
 
     move-result v2
@@ -470,7 +466,7 @@
     goto :goto_1
 
     .line 2217
-    :cond_3
+    :pswitch_5
     invoke-virtual {p3}, Ljava/nio/ByteBuffer;->getInt()I
 
     move-result v2
@@ -527,7 +523,7 @@
     goto/16 :goto_0
 
     .line 2232
-    :cond_4
+    :cond_1
     invoke-static {}, Lcom/qualcomm/qcrilhook/EmbmsOemHook;->access$000()Ljava/lang/String;
 
     move-result-object v0
@@ -553,7 +549,16 @@
     .line 2233
     return-void
 
+    nop
+
     :pswitch_data_0
+    .packed-switch 0x1
+        :pswitch_5
+        :pswitch_4
+        :pswitch_3
+    .end packed-switch
+
+    :pswitch_data_1
     .packed-switch 0x10
         :pswitch_2
         :pswitch_1

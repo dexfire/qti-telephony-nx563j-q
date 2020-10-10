@@ -91,9 +91,13 @@
 
     invoke-static {v2, v3}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
+    .end local v0    # "type":I
+    .end local v1    # "length":I
     goto :goto_1
 
     .line 1358
+    .restart local v0    # "type":I
+    .restart local v1    # "length":I
     :cond_0
     invoke-virtual {p2}, Ljava/nio/ByteBuffer;->get()B
 

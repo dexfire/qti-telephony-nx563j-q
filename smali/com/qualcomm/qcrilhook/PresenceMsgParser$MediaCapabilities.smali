@@ -39,31 +39,31 @@
     .line 21
     new-instance v0, Lcom/qualcomm/qcrilhook/PresenceMsgParser$MediaCapabilities;
 
-    const/4 v1, 0x0
+    const-string v1, "FULL_DUPLEX"
 
-    const-string v2, "FULL_DUPLEX"
+    const/4 v2, 0x0
 
-    invoke-direct {v0, v2, v1}, Lcom/qualcomm/qcrilhook/PresenceMsgParser$MediaCapabilities;-><init>(Ljava/lang/String;I)V
+    invoke-direct {v0, v1, v2}, Lcom/qualcomm/qcrilhook/PresenceMsgParser$MediaCapabilities;-><init>(Ljava/lang/String;I)V
 
     sput-object v0, Lcom/qualcomm/qcrilhook/PresenceMsgParser$MediaCapabilities;->FULL_DUPLEX:Lcom/qualcomm/qcrilhook/PresenceMsgParser$MediaCapabilities;
 
     new-instance v0, Lcom/qualcomm/qcrilhook/PresenceMsgParser$MediaCapabilities;
 
-    const/4 v2, 0x1
+    const-string v1, "HALF_RECEIVE_ONLY"
 
-    const-string v3, "HALF_RECEIVE_ONLY"
+    const/4 v3, 0x1
 
-    invoke-direct {v0, v3, v2}, Lcom/qualcomm/qcrilhook/PresenceMsgParser$MediaCapabilities;-><init>(Ljava/lang/String;I)V
+    invoke-direct {v0, v1, v3}, Lcom/qualcomm/qcrilhook/PresenceMsgParser$MediaCapabilities;-><init>(Ljava/lang/String;I)V
 
     sput-object v0, Lcom/qualcomm/qcrilhook/PresenceMsgParser$MediaCapabilities;->HALF_RECEIVE_ONLY:Lcom/qualcomm/qcrilhook/PresenceMsgParser$MediaCapabilities;
 
     new-instance v0, Lcom/qualcomm/qcrilhook/PresenceMsgParser$MediaCapabilities;
 
-    const/4 v3, 0x2
+    const-string v1, "HALF_SEND_ONLY"
 
-    const-string v4, "HALF_SEND_ONLY"
+    const/4 v4, 0x2
 
-    invoke-direct {v0, v4, v3}, Lcom/qualcomm/qcrilhook/PresenceMsgParser$MediaCapabilities;-><init>(Ljava/lang/String;I)V
+    invoke-direct {v0, v1, v4}, Lcom/qualcomm/qcrilhook/PresenceMsgParser$MediaCapabilities;-><init>(Ljava/lang/String;I)V
 
     sput-object v0, Lcom/qualcomm/qcrilhook/PresenceMsgParser$MediaCapabilities;->HALF_SEND_ONLY:Lcom/qualcomm/qcrilhook/PresenceMsgParser$MediaCapabilities;
 
@@ -72,17 +72,17 @@
 
     new-array v0, v0, [Lcom/qualcomm/qcrilhook/PresenceMsgParser$MediaCapabilities;
 
-    sget-object v4, Lcom/qualcomm/qcrilhook/PresenceMsgParser$MediaCapabilities;->FULL_DUPLEX:Lcom/qualcomm/qcrilhook/PresenceMsgParser$MediaCapabilities;
-
-    aput-object v4, v0, v1
-
-    sget-object v1, Lcom/qualcomm/qcrilhook/PresenceMsgParser$MediaCapabilities;->HALF_RECEIVE_ONLY:Lcom/qualcomm/qcrilhook/PresenceMsgParser$MediaCapabilities;
+    sget-object v1, Lcom/qualcomm/qcrilhook/PresenceMsgParser$MediaCapabilities;->FULL_DUPLEX:Lcom/qualcomm/qcrilhook/PresenceMsgParser$MediaCapabilities;
 
     aput-object v1, v0, v2
 
-    sget-object v1, Lcom/qualcomm/qcrilhook/PresenceMsgParser$MediaCapabilities;->HALF_SEND_ONLY:Lcom/qualcomm/qcrilhook/PresenceMsgParser$MediaCapabilities;
+    sget-object v1, Lcom/qualcomm/qcrilhook/PresenceMsgParser$MediaCapabilities;->HALF_RECEIVE_ONLY:Lcom/qualcomm/qcrilhook/PresenceMsgParser$MediaCapabilities;
 
     aput-object v1, v0, v3
+
+    sget-object v1, Lcom/qualcomm/qcrilhook/PresenceMsgParser$MediaCapabilities;->HALF_SEND_ONLY:Lcom/qualcomm/qcrilhook/PresenceMsgParser$MediaCapabilities;
+
+    aput-object v1, v0, v4
 
     sput-object v0, Lcom/qualcomm/qcrilhook/PresenceMsgParser$MediaCapabilities;->$VALUES:[Lcom/qualcomm/qcrilhook/PresenceMsgParser$MediaCapabilities;
 

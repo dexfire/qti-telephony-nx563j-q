@@ -294,7 +294,7 @@
 
     .line 126
     .local v1, "data":[B
-    const/4 v4, 0x0
+    move v4, v2
 
     .local v4, "i":I
     :goto_0
@@ -1165,7 +1165,7 @@
 
     .line 143
     .local v1, "data":[B
-    const/4 v4, 0x0
+    move v4, v2
 
     .local v4, "i":I
     :goto_0

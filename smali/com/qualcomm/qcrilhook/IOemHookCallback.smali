@@ -9,8 +9,7 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Lcom/qualcomm/qcrilhook/IOemHookCallback$Stub;,
-        Lcom/qualcomm/qcrilhook/IOemHookCallback$Default;
+        Lcom/qualcomm/qcrilhook/IOemHookCallback$Stub;
     }
 .end annotation
 

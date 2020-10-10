@@ -26,7 +26,7 @@
     .locals 0
     .param p1, "this$0"    # Lcom/qualcomm/qcrilhook/QmiOemHook;
 
-    .line 63
+    .line 62
     iput-object p1, p0, Lcom/qualcomm/qcrilhook/QmiOemHook$1;->this$0:Lcom/qualcomm/qcrilhook/QmiOemHook;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -41,14 +41,14 @@
 
     monitor-enter p0
 
-    .line 72
+    .line 71
     const/4 v0, 0x0
 
     :try_start_0
     invoke-static {v0}, Lcom/qualcomm/qcrilhook/QmiOemHook;->access$002(Z)Z
 
-    .line 73
-    new-instance v0, Lorg/codeaurora/telephony/utils/AsyncResult;
+    .line 72
+    new-instance v0, Landroid/os/AsyncResult;
 
     invoke-static {}, Lcom/qualcomm/qcrilhook/QmiOemHook;->access$000()Z
 
@@ -60,10 +60,10 @@
 
     const/4 v2, 0x0
 
-    invoke-direct {v0, v2, v1, v2}, Lorg/codeaurora/telephony/utils/AsyncResult;-><init>(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Throwable;)V
+    invoke-direct {v0, v2, v1, v2}, Landroid/os/AsyncResult;-><init>(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Throwable;)V
 
-    .line 74
-    .local v0, "ar":Lorg/codeaurora/telephony/utils/AsyncResult;
+    .line 73
+    .local v0, "ar":Landroid/os/AsyncResult;
     invoke-static {}, Lcom/qualcomm/qcrilhook/QmiOemHook;->access$100()Ljava/lang/String;
 
     move-result-object v1
@@ -72,41 +72,41 @@
 
     invoke-static {v1, v2}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 75
-    invoke-static {}, Lcom/qualcomm/qcrilhook/QmiOemHook;->access$200()Lorg/codeaurora/telephony/utils/RegistrantList;
+    .line 74
+    invoke-static {}, Lcom/qualcomm/qcrilhook/QmiOemHook;->access$200()Landroid/os/RegistrantList;
 
     move-result-object v1
 
-    invoke-virtual {v1, v0}, Lorg/codeaurora/telephony/utils/RegistrantList;->notifyRegistrants(Lorg/codeaurora/telephony/utils/AsyncResult;)V
+    invoke-virtual {v1, v0}, Landroid/os/RegistrantList;->notifyRegistrants(Landroid/os/AsyncResult;)V
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 76
+    .line 75
     monitor-exit p0
 
     return-void
 
-    .line 71
-    .end local v0    # "ar":Lorg/codeaurora/telephony/utils/AsyncResult;
-    .end local p0    # "this":Lcom/qualcomm/qcrilhook/QmiOemHook$1;
+    .line 70
+    .end local v0    # "ar":Landroid/os/AsyncResult;
     :catchall_0
     move-exception v0
 
     monitor-exit p0
 
+    .end local p0    # "this":Lcom/qualcomm/qcrilhook/QmiOemHook$1;
     throw v0
 .end method
 
 .method public onQcRilHookReady()V
     .locals 3
 
-    .line 65
+    .line 64
     const/4 v0, 0x1
 
     invoke-static {v0}, Lcom/qualcomm/qcrilhook/QmiOemHook;->access$002(Z)Z
 
-    .line 66
-    new-instance v0, Lorg/codeaurora/telephony/utils/AsyncResult;
+    .line 65
+    new-instance v0, Landroid/os/AsyncResult;
 
     invoke-static {}, Lcom/qualcomm/qcrilhook/QmiOemHook;->access$000()Z
 
@@ -118,10 +118,10 @@
 
     const/4 v2, 0x0
 
-    invoke-direct {v0, v2, v1, v2}, Lorg/codeaurora/telephony/utils/AsyncResult;-><init>(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Throwable;)V
+    invoke-direct {v0, v2, v1, v2}, Landroid/os/AsyncResult;-><init>(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Throwable;)V
 
-    .line 67
-    .local v0, "ar":Lorg/codeaurora/telephony/utils/AsyncResult;
+    .line 66
+    .local v0, "ar":Landroid/os/AsyncResult;
     invoke-static {}, Lcom/qualcomm/qcrilhook/QmiOemHook;->access$100()Ljava/lang/String;
 
     move-result-object v1
@@ -130,13 +130,13 @@
 
     invoke-static {v1, v2}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 68
-    invoke-static {}, Lcom/qualcomm/qcrilhook/QmiOemHook;->access$200()Lorg/codeaurora/telephony/utils/RegistrantList;
+    .line 67
+    invoke-static {}, Lcom/qualcomm/qcrilhook/QmiOemHook;->access$200()Landroid/os/RegistrantList;
 
     move-result-object v1
 
-    invoke-virtual {v1, v0}, Lorg/codeaurora/telephony/utils/RegistrantList;->notifyRegistrants(Lorg/codeaurora/telephony/utils/AsyncResult;)V
+    invoke-virtual {v1, v0}, Landroid/os/RegistrantList;->notifyRegistrants(Landroid/os/AsyncResult;)V
 
-    .line 69
+    .line 68
     return-void
 .end method

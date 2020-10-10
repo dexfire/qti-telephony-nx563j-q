@@ -39,31 +39,31 @@
     .line 53
     new-instance v0, Lcom/qualcomm/qcrilhook/QmiOemHookConstants$ResponseType;
 
-    const/4 v1, 0x0
+    const-string v1, "IS_SYNC_RESPONSE"
 
-    const-string v2, "IS_SYNC_RESPONSE"
+    const/4 v2, 0x0
 
-    invoke-direct {v0, v2, v1}, Lcom/qualcomm/qcrilhook/QmiOemHookConstants$ResponseType;-><init>(Ljava/lang/String;I)V
+    invoke-direct {v0, v1, v2}, Lcom/qualcomm/qcrilhook/QmiOemHookConstants$ResponseType;-><init>(Ljava/lang/String;I)V
 
     sput-object v0, Lcom/qualcomm/qcrilhook/QmiOemHookConstants$ResponseType;->IS_SYNC_RESPONSE:Lcom/qualcomm/qcrilhook/QmiOemHookConstants$ResponseType;
 
     new-instance v0, Lcom/qualcomm/qcrilhook/QmiOemHookConstants$ResponseType;
 
-    const/4 v2, 0x1
+    const-string v1, "IS_ASYNC_RESPONSE"
 
-    const-string v3, "IS_ASYNC_RESPONSE"
+    const/4 v3, 0x1
 
-    invoke-direct {v0, v3, v2}, Lcom/qualcomm/qcrilhook/QmiOemHookConstants$ResponseType;-><init>(Ljava/lang/String;I)V
+    invoke-direct {v0, v1, v3}, Lcom/qualcomm/qcrilhook/QmiOemHookConstants$ResponseType;-><init>(Ljava/lang/String;I)V
 
     sput-object v0, Lcom/qualcomm/qcrilhook/QmiOemHookConstants$ResponseType;->IS_ASYNC_RESPONSE:Lcom/qualcomm/qcrilhook/QmiOemHookConstants$ResponseType;
 
     new-instance v0, Lcom/qualcomm/qcrilhook/QmiOemHookConstants$ResponseType;
 
-    const/4 v3, 0x2
+    const-string v1, "IS_UNSOL"
 
-    const-string v4, "IS_UNSOL"
+    const/4 v4, 0x2
 
-    invoke-direct {v0, v4, v3}, Lcom/qualcomm/qcrilhook/QmiOemHookConstants$ResponseType;-><init>(Ljava/lang/String;I)V
+    invoke-direct {v0, v1, v4}, Lcom/qualcomm/qcrilhook/QmiOemHookConstants$ResponseType;-><init>(Ljava/lang/String;I)V
 
     sput-object v0, Lcom/qualcomm/qcrilhook/QmiOemHookConstants$ResponseType;->IS_UNSOL:Lcom/qualcomm/qcrilhook/QmiOemHookConstants$ResponseType;
 
@@ -72,17 +72,17 @@
 
     new-array v0, v0, [Lcom/qualcomm/qcrilhook/QmiOemHookConstants$ResponseType;
 
-    sget-object v4, Lcom/qualcomm/qcrilhook/QmiOemHookConstants$ResponseType;->IS_SYNC_RESPONSE:Lcom/qualcomm/qcrilhook/QmiOemHookConstants$ResponseType;
-
-    aput-object v4, v0, v1
-
-    sget-object v1, Lcom/qualcomm/qcrilhook/QmiOemHookConstants$ResponseType;->IS_ASYNC_RESPONSE:Lcom/qualcomm/qcrilhook/QmiOemHookConstants$ResponseType;
+    sget-object v1, Lcom/qualcomm/qcrilhook/QmiOemHookConstants$ResponseType;->IS_SYNC_RESPONSE:Lcom/qualcomm/qcrilhook/QmiOemHookConstants$ResponseType;
 
     aput-object v1, v0, v2
 
-    sget-object v1, Lcom/qualcomm/qcrilhook/QmiOemHookConstants$ResponseType;->IS_UNSOL:Lcom/qualcomm/qcrilhook/QmiOemHookConstants$ResponseType;
+    sget-object v1, Lcom/qualcomm/qcrilhook/QmiOemHookConstants$ResponseType;->IS_ASYNC_RESPONSE:Lcom/qualcomm/qcrilhook/QmiOemHookConstants$ResponseType;
 
     aput-object v1, v0, v3
+
+    sget-object v1, Lcom/qualcomm/qcrilhook/QmiOemHookConstants$ResponseType;->IS_UNSOL:Lcom/qualcomm/qcrilhook/QmiOemHookConstants$ResponseType;
+
+    aput-object v1, v0, v4
 
     sput-object v0, Lcom/qualcomm/qcrilhook/QmiOemHookConstants$ResponseType;->$VALUES:[Lcom/qualcomm/qcrilhook/QmiOemHookConstants$ResponseType;
 

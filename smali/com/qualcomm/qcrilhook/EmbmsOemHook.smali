@@ -304,7 +304,7 @@
 # instance fields
 .field private mQmiOemHook:Lcom/qualcomm/qcrilhook/QmiOemHook;
 
-.field private mRegistrants:Lorg/codeaurora/telephony/utils/RegistrantList;
+.field private mRegistrants:Landroid/os/RegistrantList;
 
 
 # direct methods
@@ -358,11 +358,11 @@
     invoke-static {p0, v0, v1}, Lcom/qualcomm/qcrilhook/QmiOemHook;->registerOnReadyCb(Landroid/os/Handler;ILjava/lang/Object;)V
 
     .line 250
-    new-instance v0, Lorg/codeaurora/telephony/utils/RegistrantList;
+    new-instance v0, Landroid/os/RegistrantList;
 
-    invoke-direct {v0}, Lorg/codeaurora/telephony/utils/RegistrantList;-><init>()V
+    invoke-direct {v0}, Landroid/os/RegistrantList;-><init>()V
 
-    iput-object v0, p0, Lcom/qualcomm/qcrilhook/EmbmsOemHook;->mRegistrants:Lorg/codeaurora/telephony/utils/RegistrantList;
+    iput-object v0, p0, Lcom/qualcomm/qcrilhook/EmbmsOemHook;->mRegistrants:Landroid/os/RegistrantList;
 
     .line 251
     return-void
@@ -529,9 +529,11 @@
     :cond_0
     new-instance v0, Ljava/lang/StringBuilder;
 
-    array-length v1, p0
+    const/4 v1, 0x2
 
-    mul-int/lit8 v1, v1, 0x2
+    array-length v2, p0
+
+    mul-int/2addr v1, v2
 
     invoke-direct {v0, v1}, Ljava/lang/StringBuilder;-><init>(I)V
 
@@ -550,13 +552,15 @@
 
     shr-int/lit8 v2, v2, 0x4
 
-    and-int/lit8 v2, v2, 0xf
+    const/16 v3, 0xf
+
+    and-int/2addr v2, v3
 
     .line 772
     .local v2, "b":I
-    const-string v3, "0123456789abcdef"
+    const-string v4, "0123456789abcdef"
 
-    invoke-virtual {v3, v2}, Ljava/lang/String;->charAt(I)C
+    invoke-virtual {v4, v2}, Ljava/lang/String;->charAt(I)C
 
     move-result v4
 
@@ -565,9 +569,11 @@
     .line 773
     aget-byte v4, p0, v1
 
-    and-int/lit8 v2, v4, 0xf
+    and-int v2, v3, v4
 
     .line 774
+    const-string v3, "0123456789abcdef"
+
     invoke-virtual {v3, v2}, Ljava/lang/String;->charAt(I)C
 
     move-result v3
@@ -646,7 +652,7 @@
 .end method
 
 .method private handleResponse(Ljava/util/HashMap;)V
-    .locals 16
+    .locals 17
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -657,10 +663,10 @@
         }
     .end annotation
 
-    .line 324
     .local p1, "map":Ljava/util/HashMap;, "Ljava/util/HashMap<Ljava/lang/Integer;Ljava/lang/Object;>;"
     move-object/from16 v0, p0
 
+    .line 324
     move-object/from16 v1, p1
 
     const/16 v2, 0x8
@@ -1389,54 +1395,56 @@
     .end annotation
 
     .line 1683
+    const/4 v0, 0x0
+
     if-nez p2, :cond_0
 
-    const/4 v0, 0x0
+    move v1, v0
 
     goto :goto_0
 
     :cond_0
-    array-length v0, p2
+    array-length v1, p2
 
     .line 1685
-    .local v0, "length":I
+    .local v1, "length":I
     :goto_0
-    new-array v1, v0, [Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiInteger;
+    new-array v2, v1, [Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiInteger;
 
     .line 1686
-    .local v1, "qmiIntArray":[Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiInteger;
-    const/4 v2, 0x0
+    .local v2, "qmiIntArray":[Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiInteger;
+    nop
 
-    .local v2, "i":I
+    .local v0, "i":I
     :goto_1
-    if-ge v2, v0, :cond_1
+    if-ge v0, v1, :cond_1
 
     .line 1687
     new-instance v3, Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiInteger;
 
-    aget v4, p2, v2
+    aget v4, p2, v0
 
     int-to-long v4, v4
 
     invoke-direct {v3, v4, v5}, Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiInteger;-><init>(J)V
 
-    aput-object v3, v1, v2
+    aput-object v3, v2, v0
 
     .line 1686
-    add-int/lit8 v2, v2, 0x1
+    add-int/lit8 v0, v0, 0x1
 
     goto :goto_1
 
     .line 1689
-    .end local v2    # "i":I
+    .end local v0    # "i":I
     :cond_1
-    new-instance v2, Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiArray;
+    new-instance v0, Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiArray;
 
     const-class v3, Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiInteger;
 
-    invoke-direct {v2, v1, v3, p1}, Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiArray;-><init>([Lcom/qualcomm/qcrilhook/BaseQmiTypes$BaseQmiItemType;Ljava/lang/Class;S)V
+    invoke-direct {v0, v2, v3, p1}, Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiArray;-><init>([Lcom/qualcomm/qcrilhook/BaseQmiTypes$BaseQmiItemType;Ljava/lang/Class;S)V
 
-    return-object v2
+    return-object v0
 .end method
 
 .method private intArrayToQmiArray(S[IS)Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiArray;
@@ -1454,54 +1462,56 @@
     .end annotation
 
     .line 1702
+    const/4 v0, 0x0
+
     if-nez p2, :cond_0
 
-    const/4 v0, 0x0
+    move v1, v0
 
     goto :goto_0
 
     :cond_0
-    array-length v0, p2
+    array-length v1, p2
 
     .line 1704
-    .local v0, "length":I
+    .local v1, "length":I
     :goto_0
-    new-array v1, v0, [Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiInteger;
+    new-array v2, v1, [Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiInteger;
 
     .line 1705
-    .local v1, "qmiIntArray":[Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiInteger;
-    const/4 v2, 0x0
+    .local v2, "qmiIntArray":[Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiInteger;
+    nop
 
-    .local v2, "i":I
+    .local v0, "i":I
     :goto_1
-    if-ge v2, v0, :cond_1
+    if-ge v0, v1, :cond_1
 
     .line 1706
     new-instance v3, Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiInteger;
 
-    aget v4, p2, v2
+    aget v4, p2, v0
 
     int-to-long v4, v4
 
     invoke-direct {v3, v4, v5}, Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiInteger;-><init>(J)V
 
-    aput-object v3, v1, v2
+    aput-object v3, v2, v0
 
     .line 1705
-    add-int/lit8 v2, v2, 0x1
+    add-int/lit8 v0, v0, 0x1
 
     goto :goto_1
 
     .line 1708
-    .end local v2    # "i":I
+    .end local v0    # "i":I
     :cond_1
-    new-instance v2, Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiArray;
+    new-instance v0, Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiArray;
 
     const-class v3, Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiInteger;
 
-    invoke-direct {v2, v1, v3, p1, p3}, Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiArray;-><init>([Lcom/qualcomm/qcrilhook/BaseQmiTypes$BaseQmiItemType;Ljava/lang/Class;SS)V
+    invoke-direct {v0, v2, v3, p1, p3}, Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiArray;-><init>([Lcom/qualcomm/qcrilhook/BaseQmiTypes$BaseQmiItemType;Ljava/lang/Class;SS)V
 
-    return-object v2
+    return-object v0
 .end method
 
 .method private notifyUnsol(ILjava/lang/Object;I)V
@@ -1517,14 +1527,14 @@
 
     .line 520
     .local v0, "obj":Lcom/qualcomm/qcrilhook/EmbmsOemHook$UnsolObject;
-    new-instance v1, Lorg/codeaurora/telephony/utils/AsyncResult;
+    new-instance v1, Landroid/os/AsyncResult;
 
     const/4 v2, 0x0
 
-    invoke-direct {v1, v2, v0, v2}, Lorg/codeaurora/telephony/utils/AsyncResult;-><init>(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Throwable;)V
+    invoke-direct {v1, v2, v0, v2}, Landroid/os/AsyncResult;-><init>(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Throwable;)V
 
     .line 521
-    .local v1, "ar":Lorg/codeaurora/telephony/utils/AsyncResult;
+    .local v1, "ar":Landroid/os/AsyncResult;
     sget-object v2, Lcom/qualcomm/qcrilhook/EmbmsOemHook;->LOG_TAG:Ljava/lang/String;
 
     new-instance v3, Ljava/lang/StringBuilder;
@@ -1544,16 +1554,16 @@
     invoke-static {v2, v3}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 522
-    iget-object v2, p0, Lcom/qualcomm/qcrilhook/EmbmsOemHook;->mRegistrants:Lorg/codeaurora/telephony/utils/RegistrantList;
+    iget-object v2, p0, Lcom/qualcomm/qcrilhook/EmbmsOemHook;->mRegistrants:Landroid/os/RegistrantList;
 
-    invoke-virtual {v2, v1}, Lorg/codeaurora/telephony/utils/RegistrantList;->notifyRegistrants(Lorg/codeaurora/telephony/utils/AsyncResult;)V
+    invoke-virtual {v2, v1}, Landroid/os/RegistrantList;->notifyRegistrants(Landroid/os/AsyncResult;)V
 
     .line 523
     return-void
 .end method
 
 .method private parseActiveTmgi(Ljava/nio/ByteBuffer;)[B
-    .locals 8
+    .locals 9
     .param p1, "buf"    # Ljava/nio/ByteBuffer;
 
     .line 1043
@@ -1567,7 +1577,9 @@
 
     .line 1045
     .local v1, "totalTmgis":S
-    mul-int/lit8 v2, v1, 0x6
+    const/4 v2, 0x6
+
+    mul-int/2addr v2, v1
 
     new-array v2, v2, [B
 
@@ -1575,59 +1587,71 @@
     .local v2, "tmgi":[B
     const/4 v3, 0x0
 
-    .local v3, "i":I
+    move v4, v0
+
+    move v0, v3
+
+    .local v0, "i":I
+    .local v4, "index":I
     :goto_0
-    if-ge v3, v1, :cond_1
+    if-ge v0, v1, :cond_1
 
     .line 1048
     invoke-virtual {p1}, Ljava/nio/ByteBuffer;->get()B
 
-    move-result v4
+    move-result v5
 
     .line 1049
-    .local v4, "tmgiLength":B
-    const/4 v5, 0x0
+    .local v5, "tmgiLength":B
+    move v6, v4
 
-    .local v5, "j":I
+    move v4, v3
+
+    .local v4, "j":I
+    .local v6, "index":I
     :goto_1
-    if-ge v5, v4, :cond_0
+    if-ge v4, v5, :cond_0
 
     .line 1050
-    add-int/lit8 v6, v0, 0x1
+    add-int/lit8 v7, v6, 0x1
 
-    .end local v0    # "index":I
-    .local v6, "index":I
+    .local v7, "index":I
     invoke-virtual {p1}, Ljava/nio/ByteBuffer;->get()B
 
-    move-result v7
+    move-result v8
 
-    aput-byte v7, v2, v0
+    aput-byte v8, v2, v6
 
     .line 1049
-    add-int/lit8 v5, v5, 0x1
+    .end local v6    # "index":I
+    add-int/lit8 v4, v4, 0x1
 
-    move v0, v6
+    move v6, v7
 
     goto :goto_1
 
     .line 1047
-    .end local v4    # "tmgiLength":B
-    .end local v5    # "j":I
-    .end local v6    # "index":I
-    .restart local v0    # "index":I
+    .end local v4    # "j":I
+    .end local v5    # "tmgiLength":B
+    .end local v7    # "index":I
+    .restart local v6    # "index":I
     :cond_0
-    add-int/lit8 v3, v3, 0x1
+    add-int/lit8 v0, v0, 0x1
+
+    move v4, v6
 
     goto :goto_0
 
     .line 1053
-    .end local v3    # "i":I
+    .end local v0    # "i":I
+    .end local v6    # "index":I
+    .local v4, "index":I
     :cond_1
     return-object v2
 .end method
 
 .method private parseTmgi(Ljava/nio/ByteBuffer;)[B
-    .locals 8
+    .locals 9
     .param p1, "buf"    # Ljava/nio/ByteBuffer;
 
     .line 1029
@@ -1641,7 +1665,9 @@
 
     .line 1031
     .local v1, "totalTmgis":B
-    mul-int/lit8 v2, v1, 0x6
+    const/4 v2, 0x6
+
+    mul-int/2addr v2, v1
 
     new-array v2, v2, [B
 
@@ -1649,53 +1675,65 @@
     .local v2, "tmgi":[B
     const/4 v3, 0x0
 
-    .local v3, "i":I
+    move v4, v0
+
+    move v0, v3
+
+    .local v0, "i":I
+    .local v4, "index":I
     :goto_0
-    if-ge v3, v1, :cond_1
+    if-ge v0, v1, :cond_1
 
     .line 1034
     invoke-virtual {p1}, Ljava/nio/ByteBuffer;->get()B
 
-    move-result v4
+    move-result v5
 
     .line 1035
-    .local v4, "tmgiLength":B
-    const/4 v5, 0x0
+    .local v5, "tmgiLength":B
+    move v6, v4
 
-    .local v5, "j":I
+    move v4, v3
+
+    .local v4, "j":I
+    .local v6, "index":I
     :goto_1
-    if-ge v5, v4, :cond_0
+    if-ge v4, v5, :cond_0
 
     .line 1036
-    add-int/lit8 v6, v0, 0x1
+    add-int/lit8 v7, v6, 0x1
 
-    .end local v0    # "index":I
-    .local v6, "index":I
+    .local v7, "index":I
     invoke-virtual {p1}, Ljava/nio/ByteBuffer;->get()B
 
-    move-result v7
+    move-result v8
 
-    aput-byte v7, v2, v0
+    aput-byte v8, v2, v6
 
     .line 1035
-    add-int/lit8 v5, v5, 0x1
+    .end local v6    # "index":I
+    add-int/lit8 v4, v4, 0x1
 
-    move v0, v6
+    move v6, v7
 
     goto :goto_1
 
     .line 1033
-    .end local v4    # "tmgiLength":B
-    .end local v5    # "j":I
-    .end local v6    # "index":I
-    .restart local v0    # "index":I
+    .end local v4    # "j":I
+    .end local v5    # "tmgiLength":B
+    .end local v7    # "index":I
+    .restart local v6    # "index":I
     :cond_0
-    add-int/lit8 v3, v3, 0x1
+    add-int/lit8 v0, v0, 0x1
+
+    move v4, v6
 
     goto :goto_0
 
     .line 1039
-    .end local v3    # "i":I
+    .end local v0    # "i":I
+    .end local v6    # "index":I
+    .local v4, "index":I
     :cond_1
     return-object v2
 .end method
@@ -1714,45 +1752,48 @@
     .end annotation
 
     .line 1654
+    const/4 v0, 0x0
+
     if-nez p2, :cond_0
 
-    const/4 v0, 0x0
+    move v1, v0
 
     goto :goto_0
 
     :cond_0
-    array-length v0, p2
+    array-length v1, p2
 
     .line 1656
-    .local v0, "length":I
+    .local v1, "length":I
     :goto_0
-    div-int/lit8 v1, v0, 0x6
+    div-int/lit8 v2, v1, 0x6
 
     .line 1657
-    .local v1, "numOfTmgi":I
-    mul-int/lit8 v2, v1, 0x1
+    .local v2, "numOfTmgi":I
+    const/4 v3, 0x1
 
-    add-int/2addr v0, v2
+    mul-int/2addr v3, v2
+
+    add-int/2addr v1, v3
 
     .line 1658
-    new-array v2, v0, [Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiByte;
+    new-array v3, v1, [Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiByte;
 
     .line 1659
-    .local v2, "qmiByteArray":[Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiByte;
-    const/4 v3, 0x0
-
-    .line 1664
-    .local v3, "index":I
+    .local v3, "qmiByteArray":[Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiByte;
     const/4 v4, 0x0
 
-    .local v4, "i":I
+    .line 1664
+    .local v4, "index":I
+    nop
+
+    .local v0, "i":I
     :goto_1
-    if-ge v4, v1, :cond_2
+    if-ge v0, v2, :cond_2
 
     .line 1665
-    add-int/lit8 v5, v3, 0x1
+    add-int/lit8 v5, v4, 0x1
 
-    .end local v3    # "index":I
     .local v5, "index":I
     new-instance v6, Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiByte;
 
@@ -1760,64 +1801,65 @@
 
     invoke-direct {v6, v7}, Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiByte;-><init>(I)V
 
-    aput-object v6, v2, v3
+    aput-object v6, v3, v4
 
     .line 1666
-    mul-int/lit8 v3, v4, 0x6
+    .end local v4    # "index":I
+    mul-int/lit8 v4, v0, 0x6
 
-    .local v3, "j":I
+    .local v4, "j":I
     :goto_2
-    add-int/lit8 v6, v4, 0x1
+    add-int/lit8 v6, v0, 0x1
 
     mul-int/2addr v6, v7
 
-    if-ge v3, v6, :cond_1
+    if-ge v4, v6, :cond_1
 
     .line 1667
     add-int/lit8 v6, v5, 0x1
 
-    .end local v5    # "index":I
     .local v6, "index":I
     new-instance v8, Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiByte;
 
-    aget-byte v9, p2, v3
+    aget-byte v9, p2, v4
 
     invoke-direct {v8, v9}, Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiByte;-><init>(B)V
 
-    aput-object v8, v2, v5
+    aput-object v8, v3, v5
 
     .line 1666
-    add-int/lit8 v3, v3, 0x1
+    .end local v5    # "index":I
+    add-int/lit8 v4, v4, 0x1
 
     move v5, v6
 
     goto :goto_2
 
     .line 1664
-    .end local v3    # "j":I
+    .end local v4    # "j":I
     .end local v6    # "index":I
     .restart local v5    # "index":I
     :cond_1
-    add-int/lit8 v4, v4, 0x1
+    add-int/lit8 v0, v0, 0x1
 
-    move v3, v5
+    move v4, v5
 
     goto :goto_1
 
     .line 1674
-    .end local v4    # "i":I
+    .end local v0    # "i":I
     .end local v5    # "index":I
-    .local v3, "index":I
+    .local v4, "index":I
     :cond_2
-    const/4 v4, 0x7
+    const/4 v0, 0x7
 
     .line 1675
-    .local v4, "numOfElements":S
+    .local v0, "numOfElements":S
     new-instance v5, Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiArray;
 
     const-class v6, Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiByte;
 
-    invoke-direct {v5, v2, v6, p1, v4}, Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiArray;-><init>([Lcom/qualcomm/qcrilhook/BaseQmiTypes$BaseQmiItemType;Ljava/lang/Class;SS)V
+    invoke-direct {v5, v3, v6, p1, v0}, Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiArray;-><init>([Lcom/qualcomm/qcrilhook/BaseQmiTypes$BaseQmiItemType;Ljava/lang/Class;SS)V
 
     return-object v5
 .end method
@@ -1905,7 +1947,7 @@
     .line 613
     move-object/from16 v8, p8
 
-    move/from16 v9, p9
+    move v9, v2
 
     invoke-virtual/range {v3 .. v9}, Lcom/qualcomm/qcrilhook/QmiOemHook;->sendQmiMessageAsync(SS[S[Lcom/qualcomm/qcrilhook/BaseQmiTypes$BaseQmiItemType;Landroid/os/Message;I)V
     :try_end_0
@@ -2015,7 +2057,7 @@
     .line 574
     move-object/from16 v8, p7
 
-    move/from16 v9, p8
+    move v9, v2
 
     invoke-virtual/range {v3 .. v9}, Lcom/qualcomm/qcrilhook/QmiOemHook;->sendQmiMessageAsync(SS[S[Lcom/qualcomm/qcrilhook/BaseQmiTypes$BaseQmiItemType;Landroid/os/Message;I)V
     :try_end_0
@@ -2078,7 +2120,7 @@
 
     invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
     :try_end_0
-    .catch Ljava/io/IOException; {:try_start_0 .. :try_end_0} :catch_3
+    .catch Ljava/io/IOException; {:try_start_0 .. :try_end_0} :catch_1
 
     move/from16 v6, p8
 
@@ -2090,13 +2132,9 @@
     move-result-object v5
 
     invoke-static {v0, v5}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_1
-    .catch Ljava/io/IOException; {:try_start_1 .. :try_end_1} :catch_2
 
     .line 881
-    const-string v0, " parameterValue = "
-
-    const/4 v5, 0x0
+    const/4 v0, 0x0
 
     if-eqz v2, :cond_0
 
@@ -2104,115 +2142,109 @@
 
     .line 882
     :cond_0
-    :try_start_2
-    sget-object v7, Lcom/qualcomm/qcrilhook/EmbmsOemHook;->LOG_TAG:Ljava/lang/String;
+    sget-object v5, Lcom/qualcomm/qcrilhook/EmbmsOemHook;->LOG_TAG:Ljava/lang/String;
 
-    new-instance v8, Ljava/lang/StringBuilder;
+    new-instance v7, Ljava/lang/StringBuilder;
 
-    invoke-direct {v8}, Ljava/lang/StringBuilder;-><init>()V
+    invoke-direct {v7}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string v9, "contentDescription: either parameterCode or parameterValue is nullparameterCode = "
+    const-string v8, "contentDescription: either parameterCode or parameterValue is nullparameterCode = "
 
-    invoke-virtual {v8, v9}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    invoke-virtual {v8, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+    invoke-virtual {v7, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
 
-    invoke-virtual {v8, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    const-string v8, " parameterValue = "
 
-    invoke-virtual {v8, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+    invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    invoke-virtual {v8}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    invoke-virtual {v7, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
 
-    move-result-object v8
+    invoke-virtual {v7}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
-    invoke-static {v7, v8}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
+    move-result-object v7
+
+    invoke-static {v5, v7}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 885
-    new-array v7, v5, [I
-    :try_end_2
-    .catch Ljava/io/IOException; {:try_start_2 .. :try_end_2} :catch_2
+    new-array v5, v0, [I
 
-    move-object v2, v7
+    move-object v2, v5
 
     .line 886
     .end local p5    # "parameterCode":[I
     .local v2, "parameterCode":[I
-    :try_start_3
-    new-array v7, v5, [I
-    :try_end_3
-    .catch Ljava/io/IOException; {:try_start_3 .. :try_end_3} :catch_1
+    new-array v5, v0, [I
 
-    move-object v3, v7
+    move-object v3, v5
 
     .line 889
     .end local p6    # "parameterValue":[I
     .local v3, "parameterValue":[I
     :cond_1
-    :try_start_4
-    array-length v7, v2
+    array-length v5, v2
 
-    if-ne v1, v7, :cond_4
+    if-ne v1, v5, :cond_4
+
+    array-length v5, v3
+
+    if-ne v1, v5, :cond_4
+
+    array-length v5, v2
 
     array-length v7, v3
 
-    if-ne v1, v7, :cond_4
-
-    array-length v7, v2
-
-    array-length v8, v3
-
-    if-eq v7, v8, :cond_2
+    if-eq v5, v7, :cond_2
 
     goto :goto_1
 
     .line 900
     :cond_2
-    mul-int/lit8 v0, v1, 0x2
+    mul-int/lit8 v5, v1, 0x2
 
     .line 901
-    .local v0, "parameterArraySize":I
+    .local v5, "parameterArraySize":I
     const/4 v7, 0x0
 
     .line 902
     .local v7, "pointer":I
-    new-array v8, v0, [I
+    new-array v8, v5, [I
 
     move-object v15, v8
 
     .line 903
     .local v15, "parameterArray":[I
-    const/4 v8, 0x0
-
     move/from16 v16, v7
 
-    .end local v7    # "pointer":I
-    .local v8, "i":I
+    move v7, v0
+
+    .local v7, "i":I
     .local v16, "pointer":I
     :goto_0
-    if-ge v8, v0, :cond_3
+    if-ge v7, v5, :cond_3
 
     .line 904
-    aget v7, v2, v16
+    aget v8, v2, v16
 
-    aput v7, v15, v8
+    aput v8, v15, v7
 
     .line 905
-    add-int/lit8 v7, v8, 0x1
+    add-int/lit8 v8, v7, 0x1
 
     aget v9, v3, v16
 
-    aput v9, v15, v7
+    aput v9, v15, v8
 
     .line 906
     add-int/lit8 v16, v16, 0x1
 
     .line 903
-    add-int/lit8 v8, v8, 0x2
+    add-int/lit8 v7, v7, 0x2
 
     goto :goto_0
 
     .line 908
-    .end local v8    # "i":I
+    .end local v7    # "i":I
     :cond_3
     sget-object v7, Lcom/qualcomm/qcrilhook/EmbmsOemHook;->LOG_TAG:Ljava/lang/String;
 
@@ -2279,77 +2311,69 @@
     .line 914
     move-object/from16 v12, p7
 
-    move/from16 v13, p8
+    move v13, v6
 
     invoke-virtual/range {v7 .. v13}, Lcom/qualcomm/qcrilhook/QmiOemHook;->sendQmiMessageAsync(SS[S[Lcom/qualcomm/qcrilhook/BaseQmiTypes$BaseQmiItemType;Landroid/os/Message;I)V
 
     .line 919
-    .end local v0    # "parameterArraySize":I
+    .end local v5    # "parameterArraySize":I
     .end local v14    # "req":Lcom/qualcomm/qcrilhook/EmbmsOemHook$ContentDescriptionReq;
     .end local v15    # "parameterArray":[I
     .end local v16    # "pointer":I
     nop
 
     .line 921
-    return v5
+    return v0
 
     .line 892
     :cond_4
     :goto_1
-    sget-object v5, Lcom/qualcomm/qcrilhook/EmbmsOemHook;->LOG_TAG:Ljava/lang/String;
+    sget-object v0, Lcom/qualcomm/qcrilhook/EmbmsOemHook;->LOG_TAG:Ljava/lang/String;
 
-    new-instance v7, Ljava/lang/StringBuilder;
+    new-instance v5, Ljava/lang/StringBuilder;
 
-    invoke-direct {v7}, Ljava/lang/StringBuilder;-><init>()V
+    invoke-direct {v5}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string v8, "contentDescription: Invalid input, numberOfParameter = "
+    const-string v7, "contentDescription: Invalid input, numberOfParameter = "
 
-    invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v5, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    invoke-virtual {v7, v1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    invoke-virtual {v5, v1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
 
-    const-string v8, " parameterCode = "
+    const-string v7, " parameterCode = "
 
-    invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v5, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    invoke-virtual {v7, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+    invoke-virtual {v5, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
 
-    invoke-virtual {v7, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    const-string v7, " parameterValue = "
 
-    invoke-virtual {v7, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+    invoke-virtual {v5, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    invoke-virtual {v7}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    invoke-virtual {v5, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
 
-    move-result-object v0
+    invoke-virtual {v5}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
-    invoke-static {v5, v0}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_4
-    .catch Ljava/io/IOException; {:try_start_4 .. :try_end_4} :catch_0
+    move-result-object v5
+
+    invoke-static {v0, v5}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+    :try_end_1
+    .catch Ljava/io/IOException; {:try_start_1 .. :try_end_1} :catch_0
 
     .line 895
     return v4
 
     .line 916
+    .end local v2    # "parameterCode":[I
+    .end local v3    # "parameterValue":[I
+    .restart local p5    # "parameterCode":[I
+    .restart local p6    # "parameterValue":[I
     :catch_0
     move-exception v0
 
     goto :goto_2
 
-    .end local v3    # "parameterValue":[I
-    .restart local p6    # "parameterValue":[I
     :catch_1
-    move-exception v0
-
-    goto :goto_2
-
-    .end local v2    # "parameterCode":[I
-    .restart local p5    # "parameterCode":[I
-    :catch_2
-    move-exception v0
-
-    goto :goto_2
-
-    :catch_3
     move-exception v0
 
     move/from16 v6, p8
@@ -2668,14 +2692,13 @@
     sput-object v0, Lcom/qualcomm/qcrilhook/EmbmsOemHook;->sInstance:Lcom/qualcomm/qcrilhook/EmbmsOemHook;
 
     .line 276
-    iget-object v0, p0, Lcom/qualcomm/qcrilhook/EmbmsOemHook;->mRegistrants:Lorg/codeaurora/telephony/utils/RegistrantList;
+    iget-object v0, p0, Lcom/qualcomm/qcrilhook/EmbmsOemHook;->mRegistrants:Landroid/os/RegistrantList;
 
-    invoke-virtual {v0}, Lorg/codeaurora/telephony/utils/RegistrantList;->removeCleared()V
+    invoke-virtual {v0}, Landroid/os/RegistrantList;->removeCleared()V
 
     goto :goto_0
 
     .line 278
-    .end local p0    # "this":Lcom/qualcomm/qcrilhook/EmbmsOemHook;
     :cond_0
     sget-object v0, Lcom/qualcomm/qcrilhook/EmbmsOemHook;->LOG_TAG:Ljava/lang/String;
 
@@ -2711,6 +2734,7 @@
 
     monitor-exit p0
 
+    .end local p0    # "this":Lcom/qualcomm/qcrilhook/EmbmsOemHook;
     throw v0
 .end method
 
@@ -3708,19 +3732,13 @@
     .line 288
     iget-object v0, p1, Landroid/os/Message;->obj:Ljava/lang/Object;
 
-    check-cast v0, Lorg/codeaurora/telephony/utils/AsyncResult;
+    check-cast v0, Landroid/os/AsyncResult;
 
     .line 290
-    .local v0, "ar":Lorg/codeaurora/telephony/utils/AsyncResult;
+    .local v0, "ar":Landroid/os/AsyncResult;
     iget v1, p1, Landroid/os/Message;->what:I
 
-    const/4 v2, 0x1
-
-    if-eq v1, v2, :cond_1
-
-    const/4 v2, 0x2
-
-    if-eq v1, v2, :cond_0
+    packed-switch v1, :pswitch_data_0
 
     .line 306
     sget-object v1, Lcom/qualcomm/qcrilhook/EmbmsOemHook;->LOG_TAG:Ljava/lang/String;
@@ -3746,8 +3764,8 @@
     goto :goto_0
 
     .line 301
-    :cond_0
-    iget-object v1, v0, Lorg/codeaurora/telephony/utils/AsyncResult;->result:Ljava/lang/Object;
+    :pswitch_0
+    iget-object v1, v0, Landroid/os/AsyncResult;->result:Ljava/lang/Object;
 
     .line 303
     .local v1, "payload":Ljava/lang/Object;
@@ -3762,14 +3780,14 @@
 
     .line 292
     .end local v1    # "payload":Ljava/lang/Object;
-    :cond_1
-    iget-object v1, v0, Lorg/codeaurora/telephony/utils/AsyncResult;->result:Ljava/lang/Object;
+    :pswitch_1
+    iget-object v1, v0, Landroid/os/AsyncResult;->result:Ljava/lang/Object;
 
     check-cast v1, Ljava/util/HashMap;
 
     .line 293
     .local v1, "map":Ljava/util/HashMap;, "Ljava/util/HashMap<Ljava/lang/Integer;Ljava/lang/Object;>;"
-    if-nez v1, :cond_2
+    if-nez v1, :cond_0
 
     .line 294
     sget-object v2, Lcom/qualcomm/qcrilhook/EmbmsOemHook;->LOG_TAG:Ljava/lang/String;
@@ -3782,7 +3800,7 @@
     return-void
 
     .line 298
-    :cond_2
+    :cond_0
     invoke-direct {p0, v1}, Lcom/qualcomm/qcrilhook/EmbmsOemHook;->handleResponse(Ljava/util/HashMap;)V
 
     .line 299
@@ -3792,6 +3810,12 @@
     .end local v1    # "map":Ljava/util/HashMap;, "Ljava/util/HashMap<Ljava/lang/Integer;Ljava/lang/Object;>;"
     :goto_0
     return-void
+
+    :pswitch_data_0
+    .packed-switch 0x1
+        :pswitch_1
+        :pswitch_0
+    .end packed-switch
 .end method
 
 .method public registerForNotifications(Landroid/os/Handler;ILjava/lang/Object;)V
@@ -3801,13 +3825,13 @@
     .param p3, "obj"    # Ljava/lang/Object;
 
     .line 529
-    new-instance v0, Lorg/codeaurora/telephony/utils/Registrant;
+    new-instance v0, Landroid/os/Registrant;
 
-    invoke-direct {v0, p1, p2, p3}, Lorg/codeaurora/telephony/utils/Registrant;-><init>(Landroid/os/Handler;ILjava/lang/Object;)V
+    invoke-direct {v0, p1, p2, p3}, Landroid/os/Registrant;-><init>(Landroid/os/Handler;ILjava/lang/Object;)V
 
     .line 530
-    .local v0, "r":Lorg/codeaurora/telephony/utils/Registrant;
-    iget-object v1, p0, Lcom/qualcomm/qcrilhook/EmbmsOemHook;->mRegistrants:Lorg/codeaurora/telephony/utils/RegistrantList;
+    .local v0, "r":Landroid/os/Registrant;
+    iget-object v1, p0, Lcom/qualcomm/qcrilhook/EmbmsOemHook;->mRegistrants:Landroid/os/RegistrantList;
 
     monitor-enter v1
 
@@ -3820,9 +3844,9 @@
     invoke-static {v2, v3}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 532
-    iget-object v2, p0, Lcom/qualcomm/qcrilhook/EmbmsOemHook;->mRegistrants:Lorg/codeaurora/telephony/utils/RegistrantList;
+    iget-object v2, p0, Lcom/qualcomm/qcrilhook/EmbmsOemHook;->mRegistrants:Landroid/os/RegistrantList;
 
-    invoke-virtual {v2, v0}, Lorg/codeaurora/telephony/utils/RegistrantList;->add(Lorg/codeaurora/telephony/utils/Registrant;)V
+    invoke-virtual {v2, v0}, Landroid/os/RegistrantList;->add(Landroid/os/Registrant;)V
 
     .line 533
     monitor-exit v1
@@ -3880,18 +3904,12 @@
     .line 838
     const/4 v0, 0x1
 
-    move v1, v0
-
-    goto :goto_0
-
-    .line 837
-    :cond_0
-    move v1, v0
-
     .line 840
     .end local v0    # "success":B
-    .local v1, "success":B
-    :goto_0
+    .local v10, "success":B
+    :cond_0
+    move v10, v0
+
     sget-object v0, Lcom/qualcomm/qcrilhook/EmbmsOemHook;->LOG_TAG:Ljava/lang/String;
 
     new-instance v3, Ljava/lang/StringBuilder;
@@ -3902,23 +3920,23 @@
 
     invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    invoke-virtual {v3, v1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    invoke-virtual {v3, v10}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
 
     const-string v4, " timeMseconds = "
 
     invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    move-wide/from16 v10, p2
+    move-wide/from16 v11, p2
 
-    invoke-virtual {v3, v10, v11}, Ljava/lang/StringBuilder;->append(J)Ljava/lang/StringBuilder;
+    invoke-virtual {v3, v11, v12}, Ljava/lang/StringBuilder;->append(J)Ljava/lang/StringBuilder;
 
     const-string v4, " timeStamp = "
 
     invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    move-wide/from16 v12, p4
+    move-wide/from16 v13, p4
 
-    invoke-virtual {v3, v12, v13}, Ljava/lang/StringBuilder;->append(J)Ljava/lang/StringBuilder;
+    invoke-virtual {v3, v13, v14}, Ljava/lang/StringBuilder;->append(J)Ljava/lang/StringBuilder;
 
     invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
@@ -3933,40 +3951,40 @@
 
     move-object/from16 v4, p0
 
-    move v5, v1
+    move v5, v10
 
-    move-wide/from16 v6, p2
+    move-wide v6, v11
 
-    move-wide/from16 v8, p4
+    move-wide v8, v13
 
     invoke-direct/range {v3 .. v9}, Lcom/qualcomm/qcrilhook/EmbmsOemHook$SetTimeRequest;-><init>(Lcom/qualcomm/qcrilhook/EmbmsOemHook;BJJ)V
 
-    move-object v14, v0
+    move-object v15, v0
 
     .line 844
-    .local v14, "req":Lcom/qualcomm/qcrilhook/EmbmsOemHook$SetTimeRequest;
-    move-object/from16 v15, p0
+    .local v15, "req":Lcom/qualcomm/qcrilhook/EmbmsOemHook$SetTimeRequest;
+    move-object/from16 v9, p0
 
     :try_start_0
-    iget-object v3, v15, Lcom/qualcomm/qcrilhook/EmbmsOemHook;->mQmiOemHook:Lcom/qualcomm/qcrilhook/QmiOemHook;
+    iget-object v3, v9, Lcom/qualcomm/qcrilhook/EmbmsOemHook;->mQmiOemHook:Lcom/qualcomm/qcrilhook/QmiOemHook;
 
     const/4 v4, 0x2
 
     const/16 v5, 0x17
 
     .line 845
-    invoke-virtual {v14}, Lcom/qualcomm/qcrilhook/EmbmsOemHook$SetTimeRequest;->getTypes()[S
+    invoke-virtual {v15}, Lcom/qualcomm/qcrilhook/EmbmsOemHook$SetTimeRequest;->getTypes()[S
 
     move-result-object v6
 
-    invoke-virtual {v14}, Lcom/qualcomm/qcrilhook/EmbmsOemHook$SetTimeRequest;->getItems()[Lcom/qualcomm/qcrilhook/BaseQmiTypes$BaseQmiItemType;
+    invoke-virtual {v15}, Lcom/qualcomm/qcrilhook/EmbmsOemHook$SetTimeRequest;->getItems()[Lcom/qualcomm/qcrilhook/BaseQmiTypes$BaseQmiItemType;
 
     move-result-object v7
 
     .line 844
     move-object/from16 v8, p6
 
-    move/from16 v9, p7
+    move v9, v2
 
     invoke-virtual/range {v3 .. v9}, Lcom/qualcomm/qcrilhook/QmiOemHook;->sendQmiMessageAsync(SS[S[Lcom/qualcomm/qcrilhook/BaseQmiTypes$BaseQmiItemType;Landroid/os/Message;I)V
     :try_end_0
@@ -4003,7 +4021,7 @@
     .param p1, "h"    # Landroid/os/Handler;
 
     .line 541
-    iget-object v0, p0, Lcom/qualcomm/qcrilhook/EmbmsOemHook;->mRegistrants:Lorg/codeaurora/telephony/utils/RegistrantList;
+    iget-object v0, p0, Lcom/qualcomm/qcrilhook/EmbmsOemHook;->mRegistrants:Landroid/os/RegistrantList;
 
     monitor-enter v0
 
@@ -4016,9 +4034,9 @@
     invoke-static {v1, v2}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 543
-    iget-object v1, p0, Lcom/qualcomm/qcrilhook/EmbmsOemHook;->mRegistrants:Lorg/codeaurora/telephony/utils/RegistrantList;
+    iget-object v1, p0, Lcom/qualcomm/qcrilhook/EmbmsOemHook;->mRegistrants:Landroid/os/RegistrantList;
 
-    invoke-virtual {v1, p1}, Lorg/codeaurora/telephony/utils/RegistrantList;->remove(Landroid/os/Handler;)V
+    invoke-virtual {v1, p1}, Landroid/os/RegistrantList;->remove(Landroid/os/Handler;)V
 
     .line 544
     monitor-exit v0

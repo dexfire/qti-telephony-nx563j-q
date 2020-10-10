@@ -44,6 +44,10 @@
 
 .field public static final QCRILHOOK_NAS_UPDATE_AKEY:I = 0x81000
 
+.field public static final QCRILHOOK_NUBIA_BASE:I = 0x8012c
+
+.field public static final QCRILHOOK_NUBIA_UNSOL_BASE:I = 0x8042e
+
 .field public static final QCRILHOOK_NV_READ:I = 0x80001
 
 .field public static final QCRILHOOK_NV_WRITE:I = 0x80002
@@ -80,6 +84,10 @@
 
 .field public static final QCRILHOOK_UNSOL_PDC_CONFIG:I = 0x803f6
 
+.field public static final QCRILHOOK_UNSOL_PDC_CONFIG_CHANGE:I = 0x80430
+
+.field public static final QCRILHOOK_UNSOL_PDC_CONFIG_SELECT:I = 0x8042f
+
 .field public static final QCRILHOOK_UNSOL_PDC_LIST_CONFIG:I = 0x80408
 
 .field public static final QCRILHOOK_UNSOL_SIMLOCK_TEMP_UNLOCK_EXPIRED:I = 0x80405
@@ -104,15 +112,13 @@
 
 .field public static final QCRIL_EVT_HOOK_CDMA_GET_AVOIDANCE_LIST:I = 0x80010
 
+.field public static final QCRIL_EVT_HOOK_DEACTIVATE_CONFIGS_BY_SUB:I = 0x8012e
+
 .field public static final QCRIL_EVT_HOOK_DEACT_CONFIGS:I = 0x8002c
 
 .field public static final QCRIL_EVT_HOOK_DELETE_ALL_CONFIGS:I = 0x8001f
 
-.field public static final QCRIL_EVT_HOOK_DISABLE_MBN_AUTO_SEL:I = 0x8ea63
-
 .field public static final QCRIL_EVT_HOOK_ENABLE_ENGINEER_MODE:I = 0x80013
-
-.field public static final QCRIL_EVT_HOOK_ENABLE_MODEM_UPDATE:I = 0x80022
 
 .field public static final QCRIL_EVT_HOOK_ENTER_DEPERSONALIZATION_CODE:I = 0x800d8
 
@@ -122,11 +128,19 @@
 
 .field public static final QCRIL_EVT_HOOK_GET_AVAILABLE_CONFIGS:I = 0x80017
 
+.field public static final QCRIL_EVT_HOOK_GET_AVAILABLE_CONFIGS_SYNC:I = 0x80131
+
 .field public static final QCRIL_EVT_HOOK_GET_CARD_STATE:I = 0x800d2
 
 .field public static final QCRIL_EVT_HOOK_GET_CONFIG:I = 0x80016
 
+.field public static final QCRIL_EVT_HOOK_GET_CONFIG_INFO:I = 0x8012d
+
 .field public static final QCRIL_EVT_HOOK_GET_CSG_ID:I = 0x80018
+
+.field public static final QCRIL_EVT_HOOK_GET_DEFAULT_CONFIG_INFO:I = 0x80130
+
+.field public static final QCRIL_EVT_HOOK_GET_DEVICE_ID:I = 0x80134
 
 .field public static final QCRIL_EVT_HOOK_GET_MAX_DATA_ALLOWED:I = 0x8005d
 
@@ -150,6 +164,8 @@
 
 .field public static final QCRIL_EVT_HOOK_GET_QC_VERSION_OF_ID:I = 0x8002f
 
+.field public static final QCRIL_EVT_HOOK_GET_SELECTED_OR_PENDING_CONFIG:I = 0x8012f
+
 .field public static final QCRIL_EVT_HOOK_GET_SLOTS_STATUS_REQ:I = 0x800da
 
 .field public static final QCRIL_EVT_HOOK_GET_SLOT_MAPPING:I = 0x800d6
@@ -165,8 +181,6 @@
 .field public static final QCRIL_EVT_HOOK_INFORM_SHUTDOWN:I = 0x8000a
 
 .field public static final QCRIL_EVT_HOOK_LTE_DIRECT_DISC_REQ:I = 0x80066
-
-.field public static final QCRIL_EVT_HOOK_MOT_BASE:I = 0x8ea60
 
 .field public static final QCRIL_EVT_HOOK_PERFORM_INCREMENTAL_NW_SCAN:I = 0x80012
 
@@ -192,8 +206,6 @@
 
 .field public static final QCRIL_EVT_HOOK_SET_IS_DATA_ROAMING_ENABLED:I = 0x80029
 
-.field public static final QCRIL_EVT_HOOK_SET_IS_WIFI_ENABLED:I = 0x8ea61
-
 .field public static final QCRIL_EVT_HOOK_SET_LTE_TUNE_AWAY:I = 0x8002b
 
 .field public static final QCRIL_EVT_HOOK_SET_PAGING_PRIORITY:I = 0x80007
@@ -210,8 +222,6 @@
 
 .field public static final QCRIL_EVT_HOOK_SET_UICC_PROVISION_PREFERENCE:I = 0x8005b
 
-.field public static final QCRIL_EVT_HOOK_SET_WIFI_CONNECTION_STATUS:I = 0x8ea62
-
 .field public static final QCRIL_EVT_HOOK_SWITCH_SLOT:I = 0x800d5
 
 .field public static final QCRIL_EVT_HOOK_UNSOL_LTE_DIRECT_DISC:I = 0x80067
@@ -221,6 +231,10 @@
 .field public static final QCRIL_EVT_HOOK_UPDATE_ADN_RECORD:I = 0x800de
 
 .field public static final QCRIL_EVT_HOOK_VALIDATE_CONFIG:I = 0x8002e
+
+.field public static final QCRIL_EVT_HOOK_ZTE_COMMON_GET:I = 0x80132
+
+.field public static final QCRIL_EVT_HOOK_ZTE_COMMON_SET:I = 0x80133
 
 .field public static final QCRIL_EVT_REQ_HOOK_GET_L_PLUS_L_FEATURE_SUPPORT_STATUS_REQ:I = 0x8005e
 
@@ -234,9 +248,6 @@
 .end method
 
 .method public abstract qcRilCleanupConfigs()Z
-.end method
-
-.method public abstract qcRilDisableMbnAutoSel()Z
 .end method
 
 .method public abstract qcRilGetAllConfigs()Z
@@ -283,19 +294,19 @@
 .method public abstract registerForFieldTestData(Landroid/os/Handler;ILjava/lang/Object;)V
 .end method
 
-.method public abstract sendQcRilHookMsg(I)Lorg/codeaurora/telephony/utils/AsyncResult;
+.method public abstract sendQcRilHookMsg(I)Landroid/os/AsyncResult;
 .end method
 
-.method public abstract sendQcRilHookMsg(IB)Lorg/codeaurora/telephony/utils/AsyncResult;
+.method public abstract sendQcRilHookMsg(IB)Landroid/os/AsyncResult;
 .end method
 
-.method public abstract sendQcRilHookMsg(II)Lorg/codeaurora/telephony/utils/AsyncResult;
+.method public abstract sendQcRilHookMsg(II)Landroid/os/AsyncResult;
 .end method
 
-.method public abstract sendQcRilHookMsg(ILjava/lang/String;)Lorg/codeaurora/telephony/utils/AsyncResult;
+.method public abstract sendQcRilHookMsg(ILjava/lang/String;)Landroid/os/AsyncResult;
 .end method
 
-.method public abstract sendQcRilHookMsg(I[B)Lorg/codeaurora/telephony/utils/AsyncResult;
+.method public abstract sendQcRilHookMsg(I[B)Landroid/os/AsyncResult;
 .end method
 
 .method public abstract unregisterForExtendedDbmIntl(Landroid/os/Handler;)V

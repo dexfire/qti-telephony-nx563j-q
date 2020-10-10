@@ -49,10 +49,10 @@
     .param p8, "is_video_supported"    # I
     .param p9, "video_capability"    # I
 
-    .line 459
     move-object v0, p0
 
-    invoke-direct {p0}, Lcom/qualcomm/qcrilhook/BaseQmiTypes$BaseQmiStructType;-><init>()V
+    .line 459
+    invoke-direct {v0}, Lcom/qualcomm/qcrilhook/BaseQmiTypes$BaseQmiStructType;-><init>()V
 
     .line 461
     new-instance v1, Lcom/qualcomm/qcrilhook/QmiPrimitiveTypes$QmiInteger;

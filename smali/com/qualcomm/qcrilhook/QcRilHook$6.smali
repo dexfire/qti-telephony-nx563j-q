@@ -26,7 +26,7 @@
     .locals 0
     .param p1, "this$0"    # Lcom/qualcomm/qcrilhook/QcRilHook;
 
-    .line 1827
+    .line 1769
     iput-object p1, p0, Lcom/qualcomm/qcrilhook/QcRilHook$6;->this$0:Lcom/qualcomm/qcrilhook/QcRilHook;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -41,7 +41,7 @@
     .param p1, "name"    # Landroid/content/ComponentName;
     .param p2, "service"    # Landroid/os/IBinder;
 
-    .line 1830
+    .line 1772
     iget-object v0, p0, Lcom/qualcomm/qcrilhook/QcRilHook$6;->this$0:Lcom/qualcomm/qcrilhook/QcRilHook;
 
     invoke-static {p2}, Lcom/qualcomm/qcrilmsgtunnel/IQcrilMsgTunnel$Stub;->asInterface(Landroid/os/IBinder;)Lcom/qualcomm/qcrilmsgtunnel/IQcrilMsgTunnel;
@@ -50,7 +50,7 @@
 
     invoke-static {v0, v1}, Lcom/qualcomm/qcrilhook/QcRilHook;->access$202(Lcom/qualcomm/qcrilhook/QcRilHook;Lcom/qualcomm/qcrilmsgtunnel/IQcrilMsgTunnel;)Lcom/qualcomm/qcrilmsgtunnel/IQcrilMsgTunnel;
 
-    .line 1831
+    .line 1773
     iget-object v0, p0, Lcom/qualcomm/qcrilhook/QcRilHook$6;->this$0:Lcom/qualcomm/qcrilhook/QcRilHook;
 
     invoke-static {v0}, Lcom/qualcomm/qcrilhook/QcRilHook;->access$200(Lcom/qualcomm/qcrilhook/QcRilHook;)Lcom/qualcomm/qcrilmsgtunnel/IQcrilMsgTunnel;
@@ -59,7 +59,7 @@
 
     if-nez v0, :cond_0
 
-    .line 1832
+    .line 1774
     const-string v0, "QC_RIL_OEM_HOOK"
 
     const-string v1, "QcrilMsgTunnelService Connect Failed (onServiceConnected)"
@@ -68,7 +68,7 @@
 
     goto :goto_0
 
-    .line 1834
+    .line 1776
     :cond_0
     iget-object v0, p0, Lcom/qualcomm/qcrilhook/QcRilHook$6;->this$0:Lcom/qualcomm/qcrilhook/QcRilHook;
 
@@ -76,7 +76,7 @@
 
     invoke-static {v0, v1}, Lcom/qualcomm/qcrilhook/QcRilHook;->access$000(Lcom/qualcomm/qcrilhook/QcRilHook;Ljava/lang/String;)V
 
-    .line 1836
+    .line 1778
     :goto_0
     iget-object v0, p0, Lcom/qualcomm/qcrilhook/QcRilHook$6;->this$0:Lcom/qualcomm/qcrilhook/QcRilHook;
 
@@ -84,7 +84,7 @@
 
     invoke-static {v0, v1}, Lcom/qualcomm/qcrilhook/QcRilHook;->access$302(Lcom/qualcomm/qcrilhook/QcRilHook;Z)Z
 
-    .line 1837
+    .line 1779
     iget-object v0, p0, Lcom/qualcomm/qcrilhook/QcRilHook$6;->this$0:Lcom/qualcomm/qcrilhook/QcRilHook;
 
     invoke-static {v0}, Lcom/qualcomm/qcrilhook/QcRilHook;->access$400(Lcom/qualcomm/qcrilhook/QcRilHook;)Lcom/qualcomm/qcrilhook/QcRilHookCallback;
@@ -93,14 +93,14 @@
 
     if-eqz v0, :cond_1
 
-    .line 1838
+    .line 1780
     iget-object v0, p0, Lcom/qualcomm/qcrilhook/QcRilHook$6;->this$0:Lcom/qualcomm/qcrilhook/QcRilHook;
 
     const-string v1, "Calling onQcRilHookReady callback"
 
     invoke-static {v0, v1}, Lcom/qualcomm/qcrilhook/QcRilHook;->access$000(Lcom/qualcomm/qcrilhook/QcRilHook;Ljava/lang/String;)V
 
-    .line 1839
+    .line 1781
     iget-object v0, p0, Lcom/qualcomm/qcrilhook/QcRilHook$6;->this$0:Lcom/qualcomm/qcrilhook/QcRilHook;
 
     invoke-static {v0}, Lcom/qualcomm/qcrilhook/QcRilHook;->access$400(Lcom/qualcomm/qcrilhook/QcRilHook;)Lcom/qualcomm/qcrilhook/QcRilHookCallback;
@@ -109,7 +109,7 @@
 
     invoke-interface {v0}, Lcom/qualcomm/qcrilhook/QcRilHookCallback;->onQcRilHookReady()V
 
-    .line 1841
+    .line 1783
     :cond_1
     return-void
 .end method
@@ -118,28 +118,28 @@
     .locals 2
     .param p1, "name"    # Landroid/content/ComponentName;
 
-    .line 1845
+    .line 1787
     iget-object v0, p0, Lcom/qualcomm/qcrilhook/QcRilHook$6;->this$0:Lcom/qualcomm/qcrilhook/QcRilHook;
 
     const-string v1, "The connection to the service got disconnected unexpectedly!"
 
     invoke-static {v0, v1}, Lcom/qualcomm/qcrilhook/QcRilHook;->access$000(Lcom/qualcomm/qcrilhook/QcRilHook;Ljava/lang/String;)V
 
-    .line 1846
+    .line 1788
     iget-object v0, p0, Lcom/qualcomm/qcrilhook/QcRilHook$6;->this$0:Lcom/qualcomm/qcrilhook/QcRilHook;
 
     const/4 v1, 0x0
 
     invoke-static {v0, v1}, Lcom/qualcomm/qcrilhook/QcRilHook;->access$202(Lcom/qualcomm/qcrilhook/QcRilHook;Lcom/qualcomm/qcrilmsgtunnel/IQcrilMsgTunnel;)Lcom/qualcomm/qcrilmsgtunnel/IQcrilMsgTunnel;
 
-    .line 1847
+    .line 1789
     iget-object v0, p0, Lcom/qualcomm/qcrilhook/QcRilHook$6;->this$0:Lcom/qualcomm/qcrilhook/QcRilHook;
 
     const/4 v1, 0x0
 
     invoke-static {v0, v1}, Lcom/qualcomm/qcrilhook/QcRilHook;->access$302(Lcom/qualcomm/qcrilhook/QcRilHook;Z)Z
 
-    .line 1848
+    .line 1790
     iget-object v0, p0, Lcom/qualcomm/qcrilhook/QcRilHook$6;->this$0:Lcom/qualcomm/qcrilhook/QcRilHook;
 
     invoke-static {v0}, Lcom/qualcomm/qcrilhook/QcRilHook;->access$400(Lcom/qualcomm/qcrilhook/QcRilHook;)Lcom/qualcomm/qcrilhook/QcRilHookCallback;
@@ -148,14 +148,14 @@
 
     if-eqz v0, :cond_0
 
-    .line 1849
+    .line 1791
     iget-object v0, p0, Lcom/qualcomm/qcrilhook/QcRilHook$6;->this$0:Lcom/qualcomm/qcrilhook/QcRilHook;
 
     const-string v1, "Calling onQcRilHookDisconnected callback"
 
     invoke-static {v0, v1}, Lcom/qualcomm/qcrilhook/QcRilHook;->access$000(Lcom/qualcomm/qcrilhook/QcRilHook;Ljava/lang/String;)V
 
-    .line 1850
+    .line 1792
     iget-object v0, p0, Lcom/qualcomm/qcrilhook/QcRilHook$6;->this$0:Lcom/qualcomm/qcrilhook/QcRilHook;
 
     invoke-static {v0}, Lcom/qualcomm/qcrilhook/QcRilHook;->access$400(Lcom/qualcomm/qcrilhook/QcRilHook;)Lcom/qualcomm/qcrilhook/QcRilHookCallback;
@@ -164,7 +164,7 @@
 
     invoke-interface {v0}, Lcom/qualcomm/qcrilhook/QcRilHookCallback;->onQcRilHookDisconnected()V
 
-    .line 1852
+    .line 1794
     :cond_0
     return-void
 .end method
