@@ -249,10 +249,10 @@
     invoke-static {p1}, Lcom/qualcomm/qti/internal/telephony/ExtTelephonyServiceImpl;->init(Landroid/content/Context;)Lcom/qualcomm/qti/internal/telephony/ExtTelephonyServiceImpl;
 
     .line 193
-    invoke-static {p1}, Lcom/motorola/android/internal/telephony/QcomMotoExtTelephonyService;->init(Landroid/content/Context;)Lcom/motorola/android/internal/telephony/QcomMotoExtTelephonyService;
+    invoke-static {p1, p3}, Lcom/qualcomm/qti/internal/telephony/primarycard/NBDefaultDataController;->init(Landroid/content/Context;[Lcom/android/internal/telephony/CommandsInterface;)V
 
     .line 195
-    invoke-static {p1, p2}, Lcom/motorola/android/internal/telephony/QcomMotoExtImsTelephony;->init(Landroid/content/Context;[Lcom/android/internal/telephony/Phone;)Lcom/motorola/android/internal/telephony/QcomMotoExtImsTelephony;
+    invoke-static {p1, p3}, Lcom/qualcomm/qti/internal/telephony/primarycard/NBDefaultVoiceController;->init(Landroid/content/Context;[Lcom/android/internal/telephony/CommandsInterface;)V
     :try_end_0
     .catch Ljava/lang/NoClassDefFoundError; {:try_start_0 .. :try_end_0} :catch_0
 
