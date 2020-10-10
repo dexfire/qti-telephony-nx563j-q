@@ -1053,6 +1053,77 @@
     return v0
 .end method
 
+.method public getSlotIndex(I)I
+    .locals 2
+    .param p1, "subId"    # I
+
+    .line 161
+    const v0, 0x7fffffff
+
+    if-ne p1, v0, :cond_0
+
+    .line 162
+    invoke-virtual {p0}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getDefaultSubId()I
+
+    move-result p1
+
+    .line 164
+    :cond_0
+    invoke-static {p1}, Landroid/telephony/SubscriptionManager;->isValidSubscriptionId(I)Z
+
+    move-result v0
+
+    if-nez v0, :cond_1
+
+    .line 165
+    const-string v0, "[getSlotIndex]- subId invalid"
+
+    invoke-direct {p0, v0}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->logd(Ljava/lang/String;)V
+
+    .line 166
+    const/4 v0, -0x1
+
+    return v0
+
+    .line 169
+    :cond_1
+    const v0, 0x7ffffffb
+
+    if-lt p1, v0, :cond_2
+
+    .line 170
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v1, "getPhoneId, received dummy subId "
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v0, p1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-direct {p0, v0}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->logd(Ljava/lang/String;)V
+
+    .line 171
+    invoke-direct {p0, p1}, Lcom/qualcomm/qti/internal/telephony/QtiSubscriptionController;->getPhoneIdFromDummySubId(I)I
+
+    move-result v0
+
+    return v0
+
+    .line 173
+    :cond_2
+    invoke-super {p0, p1}, Lcom/android/internal/telephony/SubscriptionController;->getSlotIndex(I)I
+
+    move-result v0
+
+    return v0
+.end method
+
 .method public isRadioInValidState()Z
     .locals 6
 
